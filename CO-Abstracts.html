@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <!-- ======================================================= -->
+  <!-- Created by AbiWord, a free, Open Source wordprocessor.  -->
+  <!-- For more information visit http://www.abisource.com.    -->
+  <!-- ======================================================= -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <title>CO-Abstracts.html</title>
+  <style type="text/css">
+   <!--
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}@media print, projection, embossed {
+	body {
+		padding-top:1.000000in;
+		padding-bottom:1.000000in;
+		padding-left:1.250000in;
+		padding-right:1.250000in;
+	}
+}
+body {
+	font-size:12.000000pt;
+	font-family:'Times New Roman';
+}
+table {
+}
+td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:top;
+}
+p, h1, h2, h3, li {
+	font-family:'Times New Roman';
+	font-size:12.000000pt;
+}
+*._normal {
+}
+*.heading_1 {
+	color:#345a8a;
+	font-size:16.000000pt;
+	font-weight:bold;
+	margin-top:24.000000pt;
+}
+*.heading_3 {
+	color:#4f81bd;
+	font-weight:bold;
+	margin-top:10.000000pt;
+}
+     -->
+  </style>
+ </head>
+ <body>
+  <div>
+   <p><span style="font-weight:bold;font-size:16pt;text-decoration:underline;color:#0000ff">BE Controls ICALEPCS 2011</span></p>
+   <p></p>
+   <p></p>
+   <p><span style="color:#0000ff">Title : Implementing hard real-time in distributed control systems</span></p>
+   <p><span style="color:#0000ff">Classification : Distributed Computing</span></p>
+   <p><span style="color:#0000ff">Speaker : Jean-Claude Bau</span></p>
+   <p><span style="color:#0000ff">Author(s): Jean-Claude Bau, Javier Serrano, (+ others)</span></p>
+   <p style="text-align:justify">The CERN accelerator control system is mainly based on a distributed architecture where real-time tasks are executed in front-end computers running the Linux operating system. Upon arrival of real-time timing messages, these tasks are triggered and access hardware modules (function generators, fieldbus masters, ...) to change settings and collect acquisition data. The main issue with this design model is the execution time, which is not predictable due to many uncontrollable factors like the operating system and the interaction among real-time tasks sharing the same processor. To solve this problem, we propose to transfer the critical tasks currently executed in the host towards the hardware modules, and also to connect them to the timing system. This solution has the advantage of shielding the real-time processing from host software crashes. The proposed hardware support is based on generic carrier cards in several form factors and VITA 57 FPGA Mezzanine Cards (FMC). Critical software will be downloadable via the host and executed by an embedded processor in a single-task single-user environment. This approach for real-time processing results in improved reliability and opens the way to new control strategies.</p>
+   <p></p>
+   <p><span style="color:#0000ff">Title : Open Hardware for CERN's accelerator control systems</span></p>
+   <p><span style="color:#0000ff">Classification : Hardware</span></p>
+   <p><span style="color:#0000ff">Speaker : Erik van der Bij</span></p>
+   <p><span style="color:#0000ff">Author(s): Erik Van der Bij, Pablo Alvarez, Andrea Boccardi, Matthieu Cattin, Carlos Gil Soriano, Samuel Iglesias Gonsalvez, Gonzalo Penacoba, Javier Serrano, Nicolas Voumard, Tomasz Wlostowski</span></p>
+   <p style="text-align:justify">The accelerator control systems at CERN will be renovated and many electronics modules will be redesigned, as the modules they will replace cannot be bought anymore or use obsolete components. The modules used in the control systems are diverse: analog and digital I/O, level converters and repeaters, serial links and timing modules. Overall around 120 modules are supported that are used in systems such as beam instrumentation, cryogenics and power converters. Only a small percentage of the currently used modules are commercially available, while most of them had been specifically designed at CERN. The new developments are based on VITA and PCI-SIG standards such as FMC (FPGA Mezzanine Card), PCI Express and VME64x using transition modules. As system-on-chip interconnect, the public domain Wishbone specification is used. For the renovation, it is considered imperative to have for each board access to the full hardware design and its firmware so that problems could quickly be resolved by CERN engineers or its collaborators. To attract other partners, that are not necessarily part of the existing networks of particle physics, the new projects are developed in a fully 'Open' fashion. This allows for strong collaborations that will result in better and reusable designs. Within this Open Hardware project new ways of working with industry are being tested with the aim to prove that there is no contradiction between commercial off-the-shelf products and openness and that industry can be involved at all stages, from design to production and support.</p>
+   <p></p>
+   <p><span style="color:#0000ff">Title: Reliability in a White Rabbit Network</span></p>
+   <p><span style="color:#0000ff">Classification: Protection and safety systems</span></p>
+   <p><span style="color:#0000ff">Speaker: Maciej Marek Lipinski (CERN, Geneva)</span></p>
+   <p><span style="color:#0000ff">Authors: Maciej Marek Lipinski, Javier Serrano, Tomasz Wlostowski (CERN, Geneva), Cesar Prados (GSI, Darmstadt)</span></p>
+   <p style="text-align:justify">White Rabbit (WR) is a time-deterministic, low-latency Ethernet-based network which enables transparent, sub-ns accuracy timing distribution. It is being developed to replace the General Machine Timing (GMT) system currently used at CERN and will become the foundation for the control system of the Facility for Antiproton and Ion Research (FAIR) at GSI. High reliability is an important issue in WR's design, since unavailability of the accelerator's control system will directly translate into expensive downtime of the machine. A typical WR network is required to lose not more than a single message per year. Due to WR's complexity, the translation of this real-world-requirement into a reliability-requirement constitutes an interesting issue on its own -- a WR network is considered functional only if it provides all its services to all its clients at any time. This paper defines reliability in WR and describes how it was addressed by dividing it into sub-domains: deterministic packet delivery, data redundancy, topology redundancy and clock resilience. The studies show that the Mean Time Between Failure (MTBF) of the WR Network is the main factor affecting its reliability. Therefore, probability calculations for different topologies were performed using the "Fault Tree analysis" and analytic estimations. Results of the study show that the requirements of WR are demanding. Design changes might be needed and further in-depth studies required, e.g. Monte Carlo simulations. Therefore, a direction for further investigations is proposed.</p>
+   <p></p>
+   <h3>&ldquo;Backward Compatibility as a Key Measure for Smooth Upgrades to the LHC control system&rdquo;</h3>
+   <p><span lang="it-IT">By </span><span style="text-decoration:underline" lang="it-IT">V.Baggiolini</span><span lang="it-IT">, M.Arruat, </span>R.Gorbosonov<span lang="it-IT">, </span>W.Sliwinski, <span lang="it-IT">P.Tarasenko, Z.Zaharieva</span></p>
+   <p></p>
+   <p style="text-align:justify">Now that the LHC is operational, a big challenge is to upgrade the control system smoothly, with minimal downtime and interruptions. Backward compatibility (BC) is a key measure to this: a subsystem with a stable API can be upgraded easily. As part of a broader Quality Assurance effort, the CERN Accelerator Controls groups explored methods and tools for BC. We investigated two aspects in particular: (1) &ldquo;API Usage&rdquo;, to know which part of an API is really used and (2) BC validation, to check that a modification is really backward compatible. We used this approach for Java APIs and for FESA devices (which expose an API in the form of device/property sets). For Java APIs, we gather usage information by regularly running byte-code analysis on all the 1000 Jars files that belong to the control system, and find relevant dependencies (methods calls and inheritance). An Eclipse plug-in we developed shows this usage information to the owner of a Java API. If an API method is used by many clients, it has to remain backward compatible. If a method is not used, it can be freely modified. To validate BC, we explored the official Eclipse tools (PDE-API tools) but finally selected one that checks BC without need for invasive technology such as OSGi. For FESA devices, we instrumented key components of our controls system to know which devices and properties are in use. This &ldquo;API usage&rdquo; information is collected in the Controls Database. It is used, amongst others, by the FESA design tools, which prevent the FESA class developer from breaking BC. </p>
+   <h3>&ldquo;The Software Improvement Process &#150; Tools and Rules to Encourage Quality&rdquo; </h3>
+   <p>By <span style="text-decoration:underline">K.Sigerud</span>, V.Baggiolini&nbsp;</p>
+   <p></p>
+   <p style="text-align:justify">The Applications section of the CERN accelerator controls group has decided to apply a systematic approach to quality assurance (QA), the &ldquo;Software Improvement Process&rdquo;, SIP. This process focuses on three areas: the development process itself, suitable QA tools, and how to practically encourage developers to do QA. For each stage of the development process we have agreed on the recommended activities and deliverables, and identified tools to automate and support the task. For example we do more code reviews. As peer reviews are resource-intensive, we only do them for complex parts of a product. As a complement, we are using static code checking tools, like FindBugs and Checkstyle. We also encourage unit testing and have agreed on a minimum level of test coverage recommended for all products, measured using Clover. Each of these tools is well integrated with our IDE (Eclipse) and give instant feedback to the developer about the quality of their code. The major challenges of SIP have been to 1) agree on common standards and configurations, for example common code formatting and Javadoc documentation guidelines, and 2) how to encourage the developers to do QA. To address the second point, we have successfully implemented &#145;SIP days&#146;, i.e. one day dedicated to QA work to which the whole group of developers participates, and &#145;Top/Flop&#146; lists, clearly indicating the best and worst products with regards to SIP guidelines and standards, for example test coverage. This paper presents the SIP initiative in more detail, summarizing our experience since two years and our future plans.</p>
+   <p></p>
+   <h3>"State Machine framework and its use for driving LHC Operational States."</h3>
+   <p>By <span style="text-decoration:underline">M.Misiowiec</span>, V.Baggiolini, M.Solfaroli</p>
+   <p style="text-align:justify"><br>The LHC follows a complex operational cycle with 12 major phases that include equipment tests, preparation, beam injection, ramping and squeezing, finally followed by the physics phase. This cycle is modeled and enforced with a state machine, whereby each operational phase is represented by a state. On each transition, before entering the next state, a series of conditions is verified to make sure the LHC is ready to move on. The State Machine framework was developed to cater for building independent or embedded state machines. They safely drive between the states executing tasks bound to transitions and broadcast related information to interested parties. The framework encourages users to program their own actions. Simple configuration management allows the operators to define and maintain complex models themselves. An emphasis was also put on easy interaction with the remote state machine instances through standard communication protocols. On top of its core functionality, the framework offers a transparent integration with other crucial tools used to operate LHC, such as the LHC Sequencer. LHC Operational States has been in production for half a year and was seamlessly adopted by the operators. Further extensions to the framework and its application in operations are under way.</p>
+   <h3>"Towards high performance processing in modern Java based control systems."</h3>
+   <p>By <span style="text-decoration:underline">M.Misiowiec</span>, W.Buczak, M.Buttner</p>
+   <p></p>
+   <p style="text-align:justify">CERN controls software is often developed on Java foundation. Some systems carry out a combination of data, network and processor intensive tasks within strict time limits. Hence, there is a demand for high performing, quasi real time solutions. Extensive prototyping of the new CERN monitoring and alarm software required us to address such expectations. The system must handle dozens of thousands of data samples every second, along its three tiers, applying complex computations throughout. To accomplish the goal, a deep understanding of multithreading, memory management and interprocess communication was required. There are unexpected traps hidden behind an excessive use of 64 bit memory or severe impact on the processing flow of modern garbage collectors, including the state of the art Oracle GarbageFirst. Tuning JVM configuration significantly affects the execution of the code. Even more important is the amount of threads and the data structures used between them. Accurately dividing work into independent tasks might boost system performance. Thorough profiling with dedicated tools helped understand the bottlenecks and choose algorithmically optimal solutions. Different virtual machines were tested, in a variety of setups and garbage collection options. The overall work provided for discovering actual hard limits of the whole setup. We present this process of architecting a challenging system in view of the characteristics and limitations of the contemporary Java runtime environment.</p>
+   <h3>Testbed for validating the LHC controls system core before deployment </h3>
+   <p>By <span style="text-decoration:underline">J.Nguyen Xuan</span>, V.Baggiolini)</p>
+   <p> </p>
+   <p style="text-align:justify">Since the start-up of the LHC, it is crucial to carefully test core controls components before deploying them operationally. The Testbed of the CERN accelerator controls group was developed for this purpose. It contains different hardware (PPC, i386) running different operating systems (Linux and LynxOS) and core software components running on front-ends, communication middleware and client libraries. The Testbed first executes integration tests to verify that the components delivered by individual teams interoperate, and then system tests, which verify high-level, end-user functionality. It also verifies that different versions of components are compatible, which is vital, because not all parts of the operational LHC control system can be upgraded simultaneously. In addition, the Testbed can be used for performance and stress tests. Internally, the Testbed is driven by Bamboo, a Continuous Integration server, which builds and deploys automatically new software versions into the Testbed environment and executes the tests continuously to prevent from software regression. Whenever a test fails, an e-mail is sent to the appropriate persons. The Testbed is part of the official controls development process wherein new releases of the controls system have to be validated before being deployed operationally. Integration and system tests are an important complement to the unit tests previously executed in the teams. The Testbed has already caught several bugs that were not discovered by the unit tests of the individual components.</p>
+   <p></p>
+   <h3>A C/C++ build system based on Maven for the LHC controls system </h3>
+   <p>By <span style="text-decoration:underline">J.Nguyen Xuan</span>, B.Copy, M.Donzelmann)</p>
+   <p></p>
+   <p style="text-align:justify">The CERN accelerator controls system, mainly written in Java and C/C++, consists nowadays of 50 projects and 150 active developers. The controls group has decided to unify the development process and standards (e.g. project layout) using Apache Maven and Sonatype Nexus. Maven is the de-facto build tool for Java, it deals with versioning and dependency management, whereas Nexus is a repository manager. C/C++ developers were struggling to include other projects, as no versioning was applied, the libraries have to be compiled and available for several platforms and architectures, and finally there was no dependency management mechanism. This results in very complex Makefiles which were difficult to maintain. Even if Maven is primarily designed for Java, a plugin (Maven NAR) adapts the build process for native programming languages for different operating systems and platforms. However C/C++ developers were not keen to abandon their current Makefiles. Hence our approach was to combine the best of the two worlds: NAR/Nexus and Makefiles. Maven NAR manages the dependencies, the versioning and creates a file with the linker and compiler options to include the dependencies. The Makefiles carry the build process to generate the binaries. Finally the versioned artifacts are stored on Nexus. Early experiments were conducted in the scope of the controls group's Testbed. Some existing projects have been successfully converted to this solution and some starting projects use this implementation.</p>
+   <p><span style="font-size:15pt;font-family:'Calibri';color:#17376d"> </span></p>
+   <p><span style="font-weight:bold;color:#0000ff">FESA 3.0 &#150; M.Arruat, co-authors L.Fernandez, J-Palluel, D.Gomez Saavedra</span></p>
+   <p class="list_paragraph _normal" style="margin-left:38.000000pt"></p>
+   <p style="text-align:justify">At CERN, all equipment software running in the Front-end is hosted by a unique real-time C++ &nbsp;Framework (FESA). FESA defines a high level modeling language to design any type of equipment software and provides a unique architecture. FESA has become an extreme success in the standardization of the front-end software development for the LHC and its injectors.</p>
+   <p style="text-align:justify">Recently, a brand new version of FESA was developed through a CERN-GSI collaboration. This brand new product brings exportability and specialization per laboratories, as well as many other improvements: an integrated development environment, based on a dedicated Eclipse plug-in, that guides the developer through all the stages of the software development life cycle; a complete abstraction of the accelerator timing system; a support of relationships (association, composition, inheritance) making the equipment software reusable.</p>
+   <p style="text-align:justify">The new version of FESA is a breakthrough for the development of the front-end software for the LHC and injectors at CERN. Nowadays, FESA is not only a success at CERN but is also becoming the future of the controls systems for FAIR at GSI. </p>
+   <p style="text-align:justify">This paper will present all the new features, focusing in the programming paradigms, like Metaprogramming, Event-driven, Parallel-processing, Data-driven, Abstraction, Polymorphism, that FESA brings at the level of equipment software. &nbsp;&nbsp;&nbsp;&nbsp;</p>
+   <p class="list_paragraph _normal" style="margin-left:38.000000pt"></p>
+   <p></p>
+   <p><span style="font-weight:bold;color:#0000ff">IEPLC &#150; F.Locci - </span><span style="font-family:'Calibri';color:#0000ff">track 4 (</span><a href="http://icalepcs2011.esrf.eu/scientific-program/scientific-program/4-integrating-industrial-commercial-devices"><span style="font-weight:bold;font-family:'Trebuchet MS';text-decoration:underline;color:#0000ff">Integrating Industrial/commercial devices</span></a><span style="font-family:'Calibri';color:#0000ff">)</span></p>
+   <p></p>
+   <p class="list_paragraph _normal" style="text-align:justify">The Programmable Logic Controller (PLC) is an essential component of the control systems of the CERN Accelerators. With a high level of functionality, performance and connectivity, it is sometimes equated to a Front-End computer (FEC). Nevertheless, the PLC remains a specialized industrial piece of equipment, with dedicated infrastructure and communication tools (field-buses, protocol, etc.) and with proprietary environment for configuration and developments. The <span style="font-weight:bold">IEPLC software package</span> that was developed within the CERN Accelerator Controls group contributes to an efficient solution for interconnecting the PLC and the Front-End computer of the control system via Ethernet. It consists of a very simple configuration tool, a PLC source code generator and a high-level C++ client interface. This paper describes the different components of this tool by focusing on its main objectives, namely: defining a standard interconnection means, limiting or eliminating the developments related to the data exchanges, which considerably reduces the configuration times and defines a clear interface between the FECs and the PLCs, without recourse to industrial supervision mechanisms.</p>
+   <p class="list_paragraph _normal" style="text-align:justify"></p>
+   <p style="text-align:justify"><span style="font-weight:bold">Keywords</span>: SIEMENS &amp; SCHNEIDER PLCs, S7 and Modbus on TCP, JAVA configuration tool, XML/XSD Editor, C/C++ client library, Python/PERL scripts.</p>
+   <h1>The integration of the LHC cryogenics control system data into the CERN Layout database</h1>
+   <p><span style="text-decoration:underline">E. Fortescue-Beck</span>, P. Gomes, R. Billen</p>
+   <p style="text-align:justify">The Large Hadron Collider&#146;s Cryogenic Control System makes extensive use of several databases to manage data appertaining to over 34,000 cryogenic instrumentation channels. This data is essential for populating the firmware of the PLCs which are responsible for maintaining the LHC at the appropriate temperature. </p>
+   <p style="text-align:justify">In order to reduce the number of data sources and the overall complexity of the system, the databases have been rationalised and the automatic tool, that extracts data for the control software, has been simplified. This paper describes the main improvements that have been made and evaluates the success of the project.</p>
+   <h1>CERN Alarms data management: state &amp; improvements</h1>
+   <p><span style="text-decoration:underline">Z. Zaharieva</span>, M. Buttner</p>
+   <p style="text-align:justify">The CERN Alarms System - LASER is a centralized service ensuring the capturing, storing and notification of anomalies for the whole accelerator chain, including the technical infrastructure at CERN. &nbsp;The underlying database holds the pre-defined configuration data for the alarm definitions, for the Operators alarms consoles as well as the time-stamped, run-time alarm events, propagated through the Alarms Systems. </p>
+   <p style="text-align:justify">The article will discuss the current state of the Alarms database and recent improvements that have been introduced. It will look into the data management challenges related to the alarms configuration data that is taken from numerous sources. Specially developed ETL processes must be applied to this data in order to transform it into an appropriate format and load it into the Alarms database. </p>
+   <p style="text-align:justify">The recorded alarms events together with some additional data, necessary for providing events statistics to users, are transferred to the long-term alarms archive<span style="font-weight:bold">.</span></p>
+   <p style="text-align:justify">The article will cover as well the data management challenges related to the recently developed suite of data management interfaces in respect of keeping data consistency between the alarms configuration data coming from external data sources and the data modifications introduced by the end-users.</p>
+   <h1>Database and interface modifications: change management without affecting the clients</h1>
+   <p><span style="text-decoration:underline">M. Peryt</span>, R. Billen, M. Martin Marquez, Z. Zaharieva</p>
+   <p style="text-align:justify">The first Oracle-based Controls Configuration Database (CCDB) was developed in 1986, by which the controls system of CERN&#146;s Proton Synchrotron became data-driven. Since then, this mission-critical system has evolved tremendously going through several generational changes in terms of the increasing complexity of the control system, software technologies and data models. &nbsp;Today, the CCDB covers the whole CERN accelerator complex and satisfies a much wider range of functional requirements. &nbsp;Despite its online usage, everyday operations of the machines must not be disrupted.</p>
+   <p style="text-align:justify">This paper describes our approach with respect to dealing with change while ensuring continuity. How do we manage the database schema changes? How do we take advantage of the latest web deployed application development frameworks without alienating the users? How do we minimize impact on the dependent systems connected to databases through various API's? In this paper we will provide our answers to these questions, and to many more.</p>
+   <h1>Database foundation for the Configuration Management of the CERN Accelerator Controls Systems</h1>
+   <p><span style="text-decoration:underline" lang="fr-FR">Z. Zaharieva</span><span lang="fr-FR">, M. Martin Marquez, M. Peryt</span></p>
+   <p style="text-align:justify">The Controls Configuration DB (CCDB) and its interfaces have been developed over the last 25 years in order to become nowadays the basis for the Configuration Management of the Controls System for all accelerators at CERN.</p>
+   <p style="text-align:justify">The CCDB contains data for all configuration items and their relationships, required for the correct functioning of the Controls System. The configuration items are quite heterogeneous, depicting different areas of the Controls System &#150; ranging from 3000 Front-End Computers, 75 000 software devices allowing remote control of the accelerators, to valid states of the Accelerators Timing System.</p>
+   <p style="text-align:justify">The article will describe the different areas of the CCDB, their interdependencies and the challenges to establish the data model for such a diverse configuration management database, serving a multitude of clients. </p>
+   <p style="text-align:justify">The CCDB tracks the life of the configuration items by allowing their clear identification, triggering of change management processes as well as providing status accounting and audits. This necessitated the development and implementation of a combination of tailored processes and tools.</p>
+   <p style="text-align:justify">The Controls System is a data-driven one - the data stored in the CCDB is extracted and propagated to the controls hardware in order to configure it remotely. Therefore a special attention is placed on data security and data integrity as an incorrectly configured item can have a direct impact on the operation of the accelerators. </p>
+   <h1>Logging Service Instrumentation: knowing exactly what is going on </h1>
+   <p><span style="font-size:9pt;color:#ff0000">(The following abstract has not been validated yet by the main author, it just represents the content)</span></p>
+   <p></p>
+   <p><span style="text-decoration:underline">C. Roderick</span>, R. Billen, D. Dinis Teixeira</p>
+   <p style="text-align:justify">The CERN accelerator Logging Service holds currently more than 70 terabyte of data and processes close to 300 gigabyte per day. &nbsp;Especially with respect to the tracking of live data from the LHC beam and equipment, this service is mission-critical for day-to-day operations. &nbsp;Performance, stability, reliability and scalability are essential characteristics that need to be ensured. This can only be achieved through understanding of both the technology, and above all - knowledge of how the system is being used. The latter is usually non-trivial in today's n-tier software environments.</p>
+   <p style="text-align:justify">This paper describes the instrumentation that has been put in place to know exactly what is going on throughout the service and keep track of it. &nbsp;This allows detailed monitoring and diagnostics on who is doing what and where the processing time is spent. &nbsp;Experience with performance incidents, whereby loss of data has been avoided, will be discussed. </p>
+   <h1>Measurement Database data-driven configuration</h1>
+   <p><span style="font-size:9pt;color:#ff0000">(The following abstract has not been validated yet by the main author, it just represents the content)</span></p>
+   <p></p>
+   <p><span style="text-decoration:underline">C. Roderick</span>, R. Billen, D. Dinis Teixeira, M. Peryt</p>
+   <p style="text-align:justify">The Measurement database, acting as short-term central persistence and front-end of the CERN accelerator Logging Service, receives time-series data for 200,000+ channels. &nbsp;A wide variety of data acquisition systems on front-end computers are providing the source data. &nbsp;The configuration information concerns the identification of the software devices deployed on these front-ends, their mapping to the channel names and the logging process. &nbsp;Since 2005, this configuration was done by means of dozens of XML files, making the daily maintenance a nightmare.</p>
+   <p style="text-align:justify">Since this year, this configuration has been fully centralized in the Measurement database itself, reducing significantly the complexity and the actors in the process. &nbsp;In addition, the automation goes all the way, whereby the logging processes immediately pick up modified a configuration. &nbsp;This paper will describe the architecture and the benefits of this implementation.</p>
+   <p style="text-align:justify"></p>
+   <p></p>
+   <p><span style="font-size:16pt;font-family:'Cambria';color:#3366ff">&ldquo;</span><span style="font-weight:bold;font-size:16pt;font-family:'Cambria';color:#3366ff">Middleware Trends and Market Leaders 2011</span><span style="font-size:16pt;font-family:'Cambria';color:#3366ff">&rdquo;</span></p>
+   <p><span style="text-decoration:underline;color:#0000ff">A. Dworak</span><span style="color:#0000ff">, W. Sliwinski, M. Sobczak, F. Ehm</span></p>
+   <p><a name="_GoBack"></a></p>
+   <p style="text-align:justify"><span style="font-family:'Cambria'">The Controls Middleware (CMW) project was launched over ten years ago. Its main goal was to unify middleware solutions used to operate CERN accelerators. An important part of the project, the equipment access library RDA, was based on CORBA, an unquestionable standard at the time. RDA became an operational and critical part of the infrastructure, yet the demanding run-time environment revealed some shortcomings of the system. Accumulation of fixes and workarounds led to unnecessary complexity. RDA became difficult to maintain and to extend. CORBA proved to be rather a cumbersome product than a panacea. Fortunately, many new transport frameworks appeared since then. They boasted a better design, and supported concepts that made them easy to use. Willing to profit from the new libraries, the CMW team updated user requirements, and in their terms investigated eventual CORBA substitutes. The process consisted of several phases: a review of middleware solutions belonging to different categories (e.g. data-centric, object-, and message-oriented) and their applicability to a communication model in RDA; evaluation of several market recognized products and promising start-ups; prototyping of typical communication scenarios; testing the libraries against exceptional situations and errors; verifying that mandatory performance constraints were met. Thanks to the performed investigation the team have selected a few libraries that suit their needs better than CORBA. Further prototyping will select the best candidate.</span></p>
+   <p><span style="font-size:15pt;font-family:'Calibri';color:#15376c"> </span></p>
+   <p></p>
+   <p style="text-align:justify"><span style="font-weight:bold;font-family:'Calibri'">Running A Reliable Messaging Infrastructure for CERN&#146;s Control System</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri';text-decoration:underline;color:#2d2cfa">F. Ehm</span><span style="font-size:10.5pt;font-family:'Calibri';color:#2d2cfa">, A. Dworak, W. Sliwinski</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'">The current middleware for CERN&#146;s accelerator controls system is based on two implementations: corba-based Controls MiddleWare (CMW) and Java Messaging Service [JMS]. The JMS service is realized using the open source messaging product ActiveMQ and had became an increasing vital part of beam operations as data need to be transported reliably for various areas such as the beam protection system, post mortem analysis, beam commissioning or the alarm system. The current JMS service is made of 17 brokers running either in clusters or as single nodes. The main service is deployed as a two node cluster providing failover and load balancing capabilities for high availability. Non-critical applications running on virtual machines or desktop machines read data via a third broker to decouple the load them from the operational main cluster. This scenario has been introduced last year and the statistics showed an uptime of 99.998% and an average data serving rate of 1.6GB /min represented by around 150 messages/sec.  </span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'">Deploying, running, maintaining and protecting such messaging infrastructure is not trivial and includes setting up of careful monitoring and failure pre-recognition. Naturally, lessons have been learnt and their outcome is very important for the current and future operation of such service.</span></p>
+   <p style="text-align:justify"></p>
+   <p style="text-align:justify"><span style="font-weight:bold;font-family:'Calibri';color:#2d2cfa">A Remote Tracing Facility for Distributed Systems</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri';text-decoration:underline;color:#2d2cfa">F. Ehm</span><span style="font-size:10.5pt;font-family:'Calibri';color:#2d2cfa">,  A. Dworak, W. Sliwinski</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'">Today the CERN&#146;s accelerator control system is built upon a large number of services mainly based on C++ and JAVA which produce log events. In such a largely distributed environment these log messages are essential for problem recognition and tracing. Tracing is therefore a vital part of operations, as understanding an issue in a subsystem means analyzing log events in an efficient and fast manner. At present 3150 device servers are deployed on 1600 diskless frontends and they send their log messages via the network to an in-house developed central server which, in turn, it saves them to files. However, this solution is not able to provide several highly desired features and  has performance limitations which led to the development of  a new solution.<br>The new distributed tracing facility fulfils these requirements by taking advantage of the Simple Text Orientated Message Protocol [STOMP] and ActiveMQ as the transport layer. The system not only allows to store critical log events centrally in files or a database but also it allows other clients (e.g. graphical interfaces) to read the same events at the same time by using the provided JAVA API. This facility also ensures that each client receives only the log events of the desired level. Thanks to the ActiveMQ broker technology the system can easily be extended to clients implemented in other languages and it is highly scalable in terms of  performance. Long running tests have shown that the system can handle up to 10.000messages/second. </span></p>
+   <p style="text-align:justify"></p>
+   <p style="text-align:justify"><span style="font-weight:bold;font-family:'Calibri';color:#2d2cfa">Status of the RBAC infrastructure and lessons learnt from its deployment in LHC</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri';text-decoration:underline;color:#2d2cfa">W. Sliwinski</span><span style="font-size:10.5pt;font-family:'Calibri';color:#2d2cfa">, </span><span style="font-size:10.5pt;font-family:'Calibri'">P. Charrue, I. Yastrebov,  CERN, Geneva </span></p>
+   <p style="text-align:justify"></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'">The distributed control system for the LHC accelerator poses many challenges due to its inherent heterogeneity and highly dynamic nature. One of the important aspects is to protect the machine against unauthorised access and unsafe operation of the control system, from the low-level front-end machines up to the high-level control applications running in the control room. In order to prevent an unauthorized access to the control system and accelerator equipment and to address the possible security issues, the Role Based Access Control (RBAC) project was designed and developed at CERN, with a major contribution from Fermilab laboratory. Furthermore, RBAC became an integral part of the CERN Controls Middleware (CMW) infrastructure and it was deployed and commissioned in the LHC operation in the summer 2008, well before the first beam in LHC. This paper presents the current status of the RBAC infrastructure, together with an outcome and gathered experience after a massive deployment in the LHC operation. Moreover, we outline how the project evolved over the last two years and give an overview of the major extensions introduced to improve integration, stability and its functionality. The paper also describes the plans of future project evolution and possible extensions, based on gathered users requirements and operational experience.</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'"><br></span><span style="font-weight:bold;font-family:'Calibri';color:#2d2cfa">FOSS In CERN: A Device Drivers Experience With The Linux Kernel</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri';color:#2d2cfa">Classification: Embedded+Real-Time Software</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri';text-decoration:underline;color:#2d2cfa">Juan David Gonzalez Cobas (CERN)</span><span style="font-size:10.5pt;font-family:'Calibri'"> et al.</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'"><br>We describe the experience acquired during the integration of the tsi148 driver into the main Linux kernel tree. The benefits (and some of the drawbacks) for long-term software maintenance are analysed, the most immediate one being the support and quality review added by an enormous  community of skilled developers. Indirect consequences are also analysed, and these are no less important: a serious impact in the style of the development process, the use of cutting edge tools and technologies supporting development, the adoption of the very strict standards enforced by the Linux kernel community, etc. These elements were also exported to the hardware development process in our section and we will explain how they were used with a particular example in mind: the development of the FMC family of boards following the Open Hardware philosophy, and how its architecture must fit the Linux model. This delicate interplay of hardware and software architectures is a perfect showcase of the benefits we get from  the strategic decision of having our drivers integrated in the kernel.</span></p>
+   <p style="text-align:justify"><span style="font-size:10.5pt;font-family:'Calibri'">Finally, the case for a whole family of CERN-developed drivers for data acquisition models, the prospects for its integration in the kernel, and the adoption of a model parallel to Comedi, is also taken as an example of how this model will perform in the future.</span></p>
+   <p style="text-align:justify"></p>
+  </div>
+ </body>
+</html>

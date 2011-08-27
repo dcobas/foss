@@ -7,17 +7,21 @@
 %%   VARIABLE HEIGHT FOR THE TITLE BOX (default 35mm)
 %%
 
-\setlength{\titleblockheight}{27mm}
+\setlength{\titleblockheight}{40mm}
 
-\begin{document}
-\title{FOSS at CERN: A Device Drivers Experience With The Linux Kernel}
-
+\title{FOSS AT CERN: A DEVICE DRIVERS\\
+	EXPERIENCE WITH THE LINUX KERNEL}
 \author{%
-	Juan David González Cobas, Emilio Garcia Cota, Samuel Iglesias Gons\'alvez,\\
+	Juan David Gonz\'alez Cobas, Emilio Garc\'ia Cota,
+	Samuel Iglesias Gons\'alvez,\\
 	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
 	Alessandro Rubini (GNUDD, Pavia)}
 
+\begin{document}
+
 \maketitle
+
+\vspace{2pc}
 
 \begin{abstract}
     We describe the experience acquired during the integration of the tsi148 driver
@@ -39,6 +43,40 @@
     the adoption of a model parallel to Comedi, is also taken as an example of how
     this model will perform in the future.
 \end{abstract}
+
+
+\section{TSI148 DRIVER INTEGRATION IN THE KERNEL}
+\subsection{Rationale}
+The VME bus is a central component of the Controls System at CERN. We 
+rely on 1140 FECs (Front End Computers), 710 of which are VME crates
+with SBC (Single Board Computers). A process of renovation is in course,
+involving the migration from 
+\begin{itemize}
+\item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605 crates), to
+\item MEN-A20 SBCs with Intel CPUs running Linux (around 105)
+\end{itemize}
+
+The MEN-A20 SBC incorporates a Tundra TSI148 VME-to-PCI-X bridge chip.
+To support the functionalities required, and for maximum backward
+comaptibility with the legacy CES API, a device driver was developed 
+
+
+
+
+
+
+\iffalse
+\subsection{Benefits}
+\subsection{Drawbacks}
+\subsection{The process}
+\subsection{Current position}
+\subsection{What we learnt}
+\section{DRIVERS FOR THE FMC FAMILY}
+\section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
+\section{PLANS FOR THE FUTURE}
+\section{ACKNOWLEDGEMENTS}
+\fi
+
 
 \section{SUBMISSION OF PAPERS}
 
@@ -64,6 +102,7 @@ requirements. Manuscripts should have:
            to facilitate electronic processing of the PostScript file.
 \end{Itemize}
 
+\iffalse
 \begin{table}[hbt]
    \centering
    \caption{Margin specifications}
@@ -79,6 +118,7 @@ requirements. Manuscripts should have:
    \end{tabular}
    \label{l2ea4-t1}
 \end{table}
+\fi
 
 The layout of the text on the page is illustrated in
 Fig.~\ref{l2ea4-f1}. Note that the paper's title and the author list should be the width of the
@@ -86,13 +126,14 @@ full page.Tables and figures may span the whole 170\,mm page width,
 if desired (see Fig.~\ref{l2ea4-f2}), but full-width figures should be placed at
 either the top or bottom of a page to ensure a proper flow of the text (Word only).
 
+\iffalse
 \begin{figure}[htb]
    \centering
    \includegraphics*[width=65mm]{JACpic_mc.eps}
    \caption{Layout of papers.}
    \label{l2ea4-f1}
 \end{figure}
-
+\fi
 \subsection{Fonts}
 
 In order to produce good Adobe Acrobat PDF files, 

@@ -3,7 +3,7 @@
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
 ARCHIVE=Makefile foss.tex $(STYLES)
 
-default: foss.pdf
+default: foss.pdf view
 all: clean default zip
 
 .tex.dvi:
@@ -18,3 +18,5 @@ clean:
 	rm -rf *.aux *.dvi *.log *.pdf
 zip:
 	zip foss`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
+view:
+	acroread foss.pdf &

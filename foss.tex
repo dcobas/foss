@@ -3,10 +3,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 
-%%
 %%   VARIABLE HEIGHT FOR THE TITLE BOX (default 35mm)
-%%
-
 \setlength{\titleblockheight}{40mm}
 
 \title{FOSS AT CERN: A DEVICE DRIVERS\\
@@ -14,15 +11,12 @@
 \author{%
 	Juan David Gonz\'alez Cobas, Emilio Garc\'ia Cota,
 	Samuel Iglesias Gons\'alvez,\\
-	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
+	Julian Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
 	Alessandro Rubini (GNUDD, Pavia)}
 
 \begin{document}
 
 \maketitle
-
-\vspace{2pc}
-
 \begin{abstract}
     We describe the experience acquired during the integration of the
     \texttt{tsi148} driver
@@ -115,7 +109,7 @@ most important ones.
 \item It's hard. One should be ready for the peculiar culture of the
     Linux Kernel Mailing List.
 \item Design, APIs and coding practice that is common or acceptable at
-    CERN must possible be adapted or completely rebuilt to comply with the
+    CERN must possibly be adapted or completely rebuilt to comply with the
     strict standards of the Linux kernel development community. The morale
     is that the end product will almost certainly be different from what one
     initially settled for (but will also certainly be better).
@@ -130,15 +124,34 @@ most important ones.
     and ease of acceptance.
 \end{Itemize}
 
-\iffalse
 \subsection{The process}
+
+Submission of source code for acceptance in the kernel is done by means
+of patches. A fist attempt of integration of the \verb|tsi148| driver
+was initiated in mid-2010 by one of the authors (Emilio Garc\'ia
+Cota). By that time, there existed one \verb|tsi148| driver in the
+\texttt{staging/} area of the kernel, maintained by Martyn Welch,
+and the set of patches
+initially submitted improved that in several areas, mainly in closer
+compliance with Linux bus/device model. Acceptance by the
+maintainer was partial, and mainly unrelated to core system
+issues like the device model.
+
+The submission was re-approached beginning 2011 by another of the
+authors (Manohar Vanga). In this case, some bugs in the staging driver
+were fixed, and the bulk of modifications concerning the device model
+were partially acknowledged. This leads to a third iteration of the
+process, and the re-issue of a third patch set in August 2011. At the
+time of this writing, the final submission of the final set of patches
+(five changesets) is imminent.
+
 \subsection{Current position}
+
 \subsection{What we learnt}
 \section{DRIVERS FOR THE FMC FAMILY}
 \section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
 \section{PLANS FOR THE FUTURE}
 \section{ACKNOWLEDGEMENTS}
-\fi
 
 
 \section{SUBMISSION OF PAPERS}

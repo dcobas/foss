@@ -175,7 +175,8 @@ kernel module acting as adaptor if driver code has to be left untouched.
 
 \section{DRIVERS FOR THE FMC FAMILY}
 
-In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with the ANSI VITA~57 FMC standard~\cite{} is described. This kit of boards,
+In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant 
+with the ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
 developed by the BE/CO Hardware and Timing section at CERN is
 another case in point for the benefits of a Linux kernel-centric
 approach. The hardware concept and architecture are described
@@ -227,6 +228,8 @@ model as described in~\cite{device-model} or in chapter~14
 of~\cite{rubini}. Conceptually, it amounts to a bus driver for the
 Wishbone bus, plus a PCI-to-Wishbone bridge driver for the carrier
 board.
+
+
 
 \section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
 \section{PLANS FOR THE FUTURE}
@@ -351,7 +354,17 @@ a JACoW template (these are implemented in the \LaTeX\ class file).
 P. Alvarez, M. Cattin, J. H. Lewis, J. Serrano, T. Wlostowski,
 ``FPGA Mezzanine Cards for CERN’s Accelerator Control System'',
 ICALEPCS'09, Kobe, October 2009, WEB002, p.~376,
-\texttt{http://www.JACoW.org}.
+\url{http://www.JACoW.org}.
+
+\bibitem{vita-fmc}
+VME International Trade Association,
+``FPGA Mezzanine Card (FMC) Standard'', \url{http://www.vita.com/}
+
+\bibitem{wishbone-spec}
+OpenCORES,
+``Wishbone B4: WISHBONE System-on-Chip (SoC)Interconnection
+Architecturefor Portable IP Cores'',
+see \url{http://opencores.org/opencores,wishbone}
 
 \bibitem{device-model}
 See ``Linux Kernel Device Model''
@@ -361,15 +374,9 @@ under \url{http://lxr.linux.no/#linux+v3.0.3/Documentation/driver-model/}
 J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd
 edition. O'Reilly and Associates, Sebastopol, CA, 2005.
 
-\bibitem{wishbone-spec}
-OpenCORES,
-``Wishbone B4: WISHBONE System-on-Chip (SoC)Interconnection
-Architecturefor Portable IP Cores'',
-see \url{http://opencores.org/opencores,wishbone}
-
-\bibitem{vita-fmc}
-VME International Trade Association,
-``FPGA Mezzanine Card (FMC) Standard'', \url{http://www.vita.com/}
+\bibitem{fpga-config-space} FPGA config space Open Hardware
+Project, see
+\url{http://www.ohwr.org/projects/fpga-config-space/}
 
 \end{thebibliography}
 

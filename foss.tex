@@ -133,9 +133,13 @@ Cota).
 
 By that time, there existed one \verb|tsi148| driver in the
 \texttt{staging/} area of the kernel, maintained by Martyn Welch. This
-driver belongs to a temptative support for the VME bus that also covers
-the Tundra Universe chips, with work derived from VMELinux by John
+driver brings a temptative support for the VME bus that covers
+two VME-to-PCI bridges:
+\begin{Itemize}
+\item the Tundra Universe chips, with work derived from VMELinux by John
 Huggins and Michael Wyrick.
+\item the Tundra TSI148 chip, inspired in the above.
+\end{Itemize}
 
 The set of patches initially submitted provided improvements in several
 areas, mainly in closer compliance with Linux bus/device model.
@@ -145,11 +149,11 @@ system issues like the device model.
 The submission was re-approached beginning 2011 by another of the
 authors (Manohar Vanga). In this case, some bugs in the staging driver
 were fixed, and the bulk of modifications concerning the device model
-were partially acknowledged. This leads to a third iteration of the
+were partially acknowledged. This led to a third iteration of the
 process, and the re-issue of a third patch set in August 2011. At the
 time of this writing, the definitive submission and acceptance of the
-final set of patches (five changesets) is in its definitive stage, and
-hopefully will be integrated in the next merge window.
+last set of patches (five changesets) is in its final stage, and
+will be applied by the main kernel maintainer in the next merge window.
 
 \subsection{Current position}
 
@@ -163,15 +167,47 @@ supported in a standard way in the mainline kernel tree.
 of the \verb|./staging/| tree. For that purpose, code must be worked on
 (or it'll die), and set up to the highest standard of quality to be
 accepted in the mainline.
+\item There are differences in API that make the merge incompatible with
+the API currently used at CERN. This implies the implementation of
+a transient 
+kernel module acting as adaptor if driver code has to be left untouched.
 \end{Itemize}
 
 \section{DRIVERS FOR THE FMC FAMILY}
 
 In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with 
-the ANSI VITA~57 FMC standard~\cite{} is described.
+the ANSI VITA~57 FMC standard~\cite{} is described. This kit of boards,
 developed by the BE/CO Hardware and Timing section at CERN is
 another case in point for the benefits of a Linux kernel-centric
-approach. The hardware concept and architecture
+approach. The hardware concept and architecture are described
+in the aforementioned paper~\cite{fpga-fmc}; the key point is that the
+mezzanine provides the basic circuitry, and the core of the application
+logic is implemented in the FPGA of the carrier board. The cores inside
+this FPGA are interconnected via a Wishbone~\cite{wishbone-spec} bus.
+
+\begin{figure}[tb]
+   \centering
+   \includegraphics*[width=80mm]{block_diagram.eps}
+   \caption{Block diagram of the FMC slow ADC application}
+   \label{slow-adc}
+\end{figure}
+
+From the software
+point of view, a particular instance of this family behaves like a
+PCI-to-Wishbone or VME-to-Wishbone bridge. The Wishbone bus
+interconnects a set of cores providing functionalities that are
+common to the whole family of mezzanines, or specific to the application
+actually plugged in the FMC slot. We show in figure~\ref{slow-adc}
+a typical example of an FPGA application comprising cores for
+\begin{Itemize}
+\item basic I${}^2$C interfacing to the mezzanine board
+\item Wishbone mastering
+\item DMA access to DDR3 memory in the carrier board
+\item mezzanine control logic (e.g., ADC programming/setup)
+\item interrupt control
+\end{Itemize}
+The net result of this modular FPGA architecture is that 
+
 
 
 
@@ -218,13 +254,6 @@ if desired (see Fig.~\ref{l2ea4-f2}), but full-width figures should be placed at
 either the top or bottom of a page to ensure a proper flow of the text (Word only).
 
 \iffalse
-\begin{figure}[htb]
-   \centering
-   \includegraphics*[width=65mm]{JACpic_mc.eps}
-   \caption{Layout of papers.}
-   \label{l2ea4-f1}
-\end{figure}
-\fi
 \begin{figure*}[tb]
     \centering
     \includegraphics*[width=168mm]{JACpic2v2.eps}
@@ -232,6 +261,7 @@ either the top or bottom of a page to ensure a proper flow of the text (Word onl
     The figure carries a multi-line caption which has to be justified, rather than centred.}
     \label{l2ea4-f2}
 \end{figure*}
+\fi
 
 If a displayed equation needs a number, place it flush with the right
 margin of the column (see Eq.~\ref{eq:units}). The equation itseld should be centred, if possible.
@@ -310,13 +340,15 @@ P. Alvarez, M. Cattin, J. H. Lewis, J. Serrano, T. Wlostowski,
 ICALEPCS'09, Kobe, October 2009, WEB002, p.~376,
 \texttt{http://www.JACoW.org}.
 
+\bibitem{wishbone-spec}
+OpenCORES,
+``Wishbone B4: WISHBONE System-on-Chip (SoC)Interconnection
+Architecturefor Portable IP Cores'',
+see \url{http://opencores.org/opencores,wishbone}
+
 \bibitem{vita-fmc}
 VME International Trade Association,
 ``FPGA Mezzanine Card (FMC) Standard'', \url{http://www.vita.com/}
-
-\bibitem{exampl-ref}
-A.N. Other, ``A Very Interesting Paper'', EPAC'96, Sitges, June 1996, MOPCH31, p. 7984 (1996),
-\texttt{http://www.JACoW.org}.
 
 \end{thebibliography}
 

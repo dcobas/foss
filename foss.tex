@@ -175,8 +175,7 @@ kernel module acting as adaptor if driver code has to be left untouched.
 
 \section{DRIVERS FOR THE FMC FAMILY}
 
-In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with 
-the ANSI VITA~57 FMC standard~\cite{} is described. This kit of boards,
+In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with the ANSI VITA~57 FMC standard~\cite{} is described. This kit of boards,
 developed by the BE/CO Hardware and Timing section at CERN is
 another case in point for the benefits of a Linux kernel-centric
 approach. The hardware concept and architecture are described
@@ -195,10 +194,12 @@ this FPGA are interconnected via a Wishbone~\cite{wishbone-spec} bus.
 From the software
 point of view, a particular instance of this family behaves like a
 PCI-to-Wishbone or VME-to-Wishbone bridge. The Wishbone bus
-interconnects a set of cores providing functionalities that are
+interconnects a set of cores providing functionalities that are either
 common to the whole family of mezzanines, or specific to the application
-actually plugged in the FMC slot. We show in figure~\ref{slow-adc}
-a typical example of an FPGA application comprising cores for
+board actually plugged in the FMC slot. We show in figure~\ref{slow-adc}
+the block diagram of the FMC 100MS 14 bit ADC,
+a typical example of an FPGA application comprising cores for, among
+others
 \begin{Itemize}
 \item basic I${}^2$C interfacing to the mezzanine board
 \item Wishbone mastering
@@ -206,10 +207,26 @@ a typical example of an FPGA application comprising cores for
 \item mezzanine control logic (e.g., ADC programming/setup)
 \item interrupt control
 \end{Itemize}
-The net result of this modular FPGA architecture is that 
-
-
-
+The consequence of this modular design of the application FPGA is that
+the device driver architecture reflects the structure of this set of
+cores (see figure~\ref{wishbone-enum}). The driver for the carrier board
+performs essentially the following basic functions
+\begin{Itemize}
+\item Identify the carrier board and initialize it
+\item Perform a basic identification of the mezzanine(s) installed in
+    the FMC slot(s), and their configured applications.
+\item Load the corresponding firmware into the carrier FPGA
+\item Register a Wishbone bus with the kernel
+\item Enumerate the cores in that firmware (to make things clear, the
+    blocks in figure~\ref{slow-adc})
+\item register the devices those cores implement and install the drivers 
+    associated to them
+\end{Itemize}
+The process is a straightforward translation of the Linux kernel device
+model as described in~\cite{device-model} or in chapter~14
+of~\cite{rubini}. Conceptually, it amounts to a bus driver for the
+Wishbone bus, plus a PCI-to-Wishbone bridge driver for the carrier
+board.
 
 \section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
 \section{PLANS FOR THE FUTURE}
@@ -220,6 +237,7 @@ The net result of this modular FPGA architecture is that
 
 These instructions are a typical implementation of the
 requirements. Manuscripts should have:
+\iffalse
 \begin{Itemize}
     \item  Either A4 (21.0\,cm~$\times$~29.7\,cm; 8.27\,in~$\times$~11.69\,in) or US
            letter size (21\,cm~$\times$~27.9\,cm; 8.5\,in~$\times$~11.0\,in) paper.
@@ -244,16 +262,11 @@ requirements. Manuscripts should have:
        \bottomrule
    \end{tabular}
    \label{l2ea4-t1}
+   \label{l2ea4-f1}
+   \label{l2ea4-f2}
 \end{table}
 \fi
 
-The layout of the text on the page is illustrated in
-Fig.~\ref{l2ea4-f1}. Note that the paper's title and the author list should be the width of the
-full page.Tables and figures may span the whole 170\,mm page width,
-if desired (see Fig.~\ref{l2ea4-f2}), but full-width figures should be placed at
-either the top or bottom of a page to ensure a proper flow of the text (Word only).
-
-\iffalse
 \begin{figure*}[tb]
     \centering
     \includegraphics*[width=168mm]{JACpic2v2.eps}
@@ -339,6 +352,14 @@ P. Alvarez, M. Cattin, J. H. Lewis, J. Serrano, T. Wlostowski,
 ``FPGA Mezzanine Cards for CERN’s Accelerator Control System'',
 ICALEPCS'09, Kobe, October 2009, WEB002, p.~376,
 \texttt{http://www.JACoW.org}.
+
+\bibitem{device-model}
+See ``Linux Kernel Device Model''
+under \url{http://lxr.linux.no/#linux+v3.0.3/Documentation/driver-model/}
+
+\bibitem{rubini}
+J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd
+edition. O'Reilly and Associates, Sebastopol, CA, 2005.
 
 \bibitem{wishbone-spec}
 OpenCORES,

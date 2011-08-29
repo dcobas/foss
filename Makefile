@@ -1,14 +1,14 @@
 .SUFFIXES:	.fig .eps .tex .dvi .ps .pdf
 
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
-FIGS=block_diagram.eps
-FIGFIGS=block_diagram.fig
+FIGS=block_diagram.eps wishbone-enum.eps
+FIGFIGS=block_diagram.fig wishbone-enum.fig
 ARCHIVE=Makefile foss.tex $(STYLES)
 
 default: foss.pdf view
 all: clean default zip
 
-foss.dvi: block_diagram.eps foss.tex
+foss.dvi: $(FIGS) foss.tex
 
 .tex.dvi:
 	latex $* && latex $*

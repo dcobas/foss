@@ -20,7 +20,7 @@ foss.dvi: block_diagram.eps foss.tex
 	ps2pdf $^ $@
 
 clean:
-	rm -rf *.aux *.dvi *.log *.pdf
+	rm -rf *.aux *.dvi *.log *.pdf *.bak
 zip:
 	zip foss`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:

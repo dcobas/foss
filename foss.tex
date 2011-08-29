@@ -48,10 +48,10 @@ with SBC (Single Board Computers). A process of renovation is in course,
 involving the migration from 
 \begin{Itemize}
 \item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605 crates), to
-\item MEN-A20 SBCs with Intel CPUs running Linux (around 105)
+\item MEN-A20 SBCs with Intel CPUs running  a real-time enabled Linux (around 105)
 \end{Itemize}
 
-The MEN-A20 SBC incorporates a Tundra TSI148 VME-to-PCI-X bridge chip.
+The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.
 To support the functionalities required, and for maximum backward
 comaptibility with the legacy CES API, a device driver was developed 
 at CERN group BE/CO in spring 2009. Clearly, this is a strategical
@@ -205,7 +205,7 @@ others
 \item basic I${}^2$C interfacing to the mezzanine board
 \item Wishbone mastering
 \item DMA access to DDR3 memory in the carrier board
-\item mezzanine control logic (e.g., ADC programming/setup)
+\item mezzanine-specific control logic (e.g., ADC programming/setup)
 \item interrupt control
 \end{Itemize}
 The consequence of this modular design of the application FPGA is that
@@ -235,11 +235,23 @@ board.
    \label{wishbone-enum}
 \end{figure}
 
-
-
-
+Modularity and reusability of cores and drivers are not the only
+rationales behind this design. Actually, the drivers for the FMC family
+are the second family of drivers planned to be integrated in the
+mainline kernel. Given that boards and their applications will be
+company-produced and available to a wide public (not only CERN-centric),
+having their drivers and the Wishbone bus integrated is the logical step
+to take. The Wishbone enumeration is made possible through the
+definition of an FPGA configuration space developed
+in~\cite{fpga-config-space}, that will be the basis for the integration of
+all drivers of this family in the kernel.
 
 \section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
+
+The third family of drivers considered for integration upstream is less
+homogeneous than the FMC family. The BE/CO supports a standard kit of hardware
+modules, 
+
 \section{PLANS FOR THE FUTURE}
 \section{ACKNOWLEDGEMENTS}
 
@@ -264,8 +276,8 @@ Architecturefor Portable IP Cores'',
 see \url{http://opencores.org/opencores,wishbone}
 
 \bibitem{device-model}
-See ``Linux Kernel Device Model''
-under \url{http://lxr.linux.no/#linux+v3.0.3/Documentation/driver-model/}
+``Linux Kernel Device Model'',
+see \url{http://lxr.linux.no/#linux+v3.0.3/Documentation/driver-model/}
 
 \bibitem{rubini}
 J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd

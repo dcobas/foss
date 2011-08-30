@@ -175,6 +175,26 @@ kernel module acting as adaptor if driver code has to be left untouched.
 
 \section{DRIVERS FOR THE FMC FAMILY}
 
+\begin{table*}[bt]
+   \centering
+   \caption{BE/CO data acquisition modules}
+   \begin{tabular}{llllll}
+       \toprule
+	\textbf{Module}& \textbf{Type}& \textbf{Channels}& 
+	\textbf{Resolution}& \textbf{Speed}& \textbf{Bus} \\ 
+       \midrule
+	VMOD-12E8/16    & Analog output& 8/16ch& 12b   & 15us/conv& VME/PCI  \\
+	VD80            & Analog input & 16ch  & 16b   & 200kS/s&   VME  \\
+	SIS3300         & Analog input & 8ch   & 12/14b& 100MS/s&   VME  \\
+	SIS3302         & Analog input & 8ch   & 16b   & 100MS/s&   VME  \\
+	SIS3320         & Analog input & 8ch   & 12b   & 250MS/s&   VME  \\
+	``Fast'' FMC ADC& Analog input & 4ch   & 14b   & 100Ms/s&   VME/PCIe (Wishbone)  \\
+	``Slow'' FMC ADC& Analog input & 8ch   & 16b   & 100kS/s&   VME/PCIe (Wishbone)  \\
+       \bottomrule
+   \end{tabular}
+   \label{zio-modules}
+\end{table*}
+
 In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant 
 with the ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
 developed by the BE/CO Hardware and Timing section at CERN is
@@ -246,11 +266,13 @@ definition of an FPGA configuration space developed
 in~\cite{fpga-config-space}, that will be the basis for the integration of
 all drivers of this family in the kernel.
 
-\section{DATA ACQUISITION DRIVERS: THE COMEDI CASE}
+\section{DATA ACQUISITION DRIVERS: KERNEL FRAMEWORKS}
 
 The third family of drivers considered for integration upstream is less
-homogeneous than the FMC family. The BE/CO supports a standard kit of hardware
-modules, 
+homogeneous than the FMC family. The BE/CO group supports a standard kit
+of hardware modules for data acquisition, some of whose characteristics
+can be compared in table~\ref{zio-modules}
+
 
 \section{PLANS FOR THE FUTURE}
 \section{ACKNOWLEDGEMENTS}

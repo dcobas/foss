@@ -3,7 +3,7 @@
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
 FIGS=block_diagram.eps wishbone-enum.eps
 FIGFIGS=block_diagram.fig wishbone-enum.fig
-ARCHIVE=Makefile foss.tex $(STYLES)
+ARCHIVE=Makefile foss.tex $(STYLES) $(FIGFIGS) $(FIGS)
 
 default: foss.pdf view
 all: clean default zip

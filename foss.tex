@@ -35,8 +35,8 @@
     get from  the strategic decision of having our drivers integrated in the
     kernel.  Finally, the case for a whole family of CERN-developed drivers for
     data acquisition models, the prospects for its integration in the kernel, and
-    the adoption of a model parallel to Comedi, is also taken as an example of how
-    this model will perform in the future.
+    the adoption of a model parallel to the Comedi framework, is also
+    taken as an example of how this model will perform in the future.
 \end{abstract}
 
 
@@ -50,7 +50,7 @@ involving the migration from
 \item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605
     crates by August 2010), to
 \item MEN-A20 SBCs with Intel CPUs running  a real-time enabled Linux
-    (around 105)
+    (around 105 by August 2010)
 \end{Itemize}
 
 The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.
@@ -59,8 +59,9 @@ comaptibility with the legacy CES API, a device driver was developed
 at CERN group BE/CO in spring 2009. Clearly, this is a strategical
 component of the controls system: every VME device relies on the
 provided programming interface to the VME bus. The CERN-developed driver
-offers, therefore, a CES compatibility API to ease the transition during
-the renovation process, and a new API more similar to common practice
+offers, therefore, a CES compatibility API to facilitate the transition
+during the renovation process, and a new API more similar to common
+practice
 in the Linux kernel.
 
 After a period of validation and improvement taking place during 2010,
@@ -157,20 +158,6 @@ Huggins and Michael Wyrick.
 \item the Tundra TSI148 chip, inspired in the above.
 \end{Itemize}
 
-\begin{figure}[t]
-   \centering
-   \includegraphics*[width=80mm]{block_diagram.eps}
-   \caption{Block diagram of the FMC slow ADC application}
-   \label{slow-adc}
-\end{figure}
-
-\begin{figure}[t]
-   \centering
-   \includegraphics*[width=80mm]{wishbone-enum.eps}
-   \caption{Wishbone bus driver architecture}
-   \label{wishbone-enum}
-\end{figure}
-
 The set of patches initially submitted provided improvements in several
 areas, esp. in orthodox implementation of the Linux bus/device model
 concepts.
@@ -202,36 +189,14 @@ CERN; this implies that a transient kernel module must adapt interfaces
 if driver code has to remain untouched.
 \end{Itemize}
 
-\subsection{Lessons Learned}
-
 \section{DRIVERS FOR THE FMC FAMILY}
 
-\begin{table*}[ht]
+\begin{figure}[t]
    \centering
-   \caption{BE/CO data acquisition modules}
-   \begin{tabular}{llllll}
-       \toprule
-	\textbf{Module}& \textbf{Type}& \textbf{Channels}& 
-	\textbf{Resolution}& \textbf{Speed}& \textbf{Bus} \\ 
-       \midrule
-	VMOD-12E8/16    &  Analog input  & 8/16ch & 12b    & 15us/sample & VME/PCI  \\
-	VD80            &  Analog input  & 16ch   & 16b    & 200kS/s     & VME  \\
-	SIS3300         &  Analog input  & 8ch    & 12/14b & 100MS/s     & VME  \\
-	SIS3302         &  Analog input  & 8ch    & 16b    & 100MS/s     & VME  \\
-	SIS3320         &  Analog input  & 8ch    & 12b    & 250MS/s     & VME  \\
-	``Fast'' FMC ADC&  Analog input  & 4ch    & 14b    & 100Ms/s     & VME/PCIe (Wishbone)  \\
-	``Slow'' FMC ADC&  Analog input  & 8ch    & 16b    & 100kS/s     & VME/PCIe (Wishbone)  \\
-       \midrule
-	CVORB V4        &  Analog output & 16ch   &  16b   &  5us/sample & VME 	 \\
-	VMOD-12A2/4     &  Analog output & 2ch    &  12b   &  10us/sample& VME/PCI \\
-	CVORG           &  Analog output & 2ch    &  14b   &  100 MS/s   & VME  \\
-       \midrule
-	VMOD-TTL        &  Digital I/O   & 20ch   & 1b     & n/a         & VME/PCI \\
-	CVORA           &  Digital I/O   & 32ch   & 1--32b & 100Mhz	 & VME \\
-       \bottomrule
-   \end{tabular}
-   \label{zio-modules}
-\end{table*}
+   \includegraphics*[width=80mm]{wishbone-enum.eps}
+   \caption{Wishbone bus driver architecture}
+   \label{wishbone-enum}
+\end{figure}
 
 
 In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant 
@@ -282,6 +247,13 @@ of~\cite{rubini}. Conceptually, it amounts to the provision of a bus driver
 for Wishbone, plus a PCI-to-Wishbone bridge driver for the
 carrier board.
 
+\begin{figure}[t]
+   \centering
+   \includegraphics*[width=80mm]{block_diagram.eps}
+   \caption{Block diagram of the FMC slow ADC application}
+   \label{slow-adc}
+\end{figure}
+
 Modularity and reusability of cores and drivers are not the only
 rationale behind this design. Actually, the drivers for the FMC family
 are the second family of drivers planned to be integrated in the
@@ -295,6 +267,7 @@ all drivers of this family in the kernel.
 
 \section{DATA ACQUISITION DRIVERS: KERNEL FRAMEWORKS}
 
+
 The third family of drivers considered for integration upstream is less
 homogeneous than the FMC family. The BE/CO group supports a standard kit
 of hardware modules for data acquisition and general analog and digital
@@ -304,6 +277,33 @@ different stages of the renovation process, leading from legacy
 LynxOS drivers to Linux; therefore, there is a varying degree of adherence to 
 standard practice in the Linux kernel community, because of the
 LynxOS coding practice formerly prevalent.
+
+\begin{table*}[ht]
+   \centering
+   \caption{BE/CO data acquisition modules}
+   \begin{tabular}{llllll}
+       \toprule
+	\textbf{Module}& \textbf{Type}& \textbf{Channels}& 
+	\textbf{Resolution}& \textbf{Speed}& \textbf{Bus} \\ 
+       \midrule
+	VMOD-12E8/16    &  Analog input  & 8/16ch & 12b    & 15us/sample & VME/PCI  \\
+	VD80            &  Analog input  & 16ch   & 16b    & 200kS/s     & VME  \\
+	SIS3300         &  Analog input  & 8ch    & 12/14b & 100MS/s     & VME  \\
+	SIS3302         &  Analog input  & 8ch    & 16b    & 100MS/s     & VME  \\
+	SIS3320         &  Analog input  & 8ch    & 12b    & 250MS/s     & VME  \\
+	``Fast'' FMC ADC&  Analog input  & 4ch    & 14b    & 100Ms/s     & VME/PCIe (Wishbone)  \\
+	``Slow'' FMC ADC&  Analog input  & 8ch    & 16b    & 100kS/s     & VME/PCIe (Wishbone)  \\
+       \midrule
+	CVORB V4        &  Analog output & 16ch   &  16b   &  5us/sample & VME 	 \\
+	VMOD-12A2/4     &  Analog output & 2ch    &  12b   &  10us/sample& VME/PCI \\
+	CVORG           &  Analog output & 2ch    &  14b   &  100 MS/s   & VME  \\
+       \midrule
+	VMOD-TTL        &  Digital I/O   & 20ch   & 1b     & n/a         & VME/PCI \\
+	CVORA           &  Digital I/O   & 32ch   & 1--32b & 100Mhz	 & VME \\
+       \bottomrule
+   \end{tabular}
+   \label{zio-modules}
+\end{table*}
 
 Two needs arise here clearly, in the light of our intention of having
 our whole set of drivers incorporated upstream:

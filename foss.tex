@@ -57,7 +57,7 @@ involving the migration from
 The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.
 To support the functionalities required, and for maximum backward
 compatibility with the legacy CES API, a device driver was developed 
-at CERN group BE/CO in spring 2009. Clearly, this is a strategical
+at CERN group BE/CO in spring 2009. Clearly, this is a strategic
 component of the controls system: every VME device relies on the
 provided programming interface to the VME bus. The CERN-developed driver
 offers, therefore, a CES compatibility API to facilitate the transition
@@ -99,11 +99,11 @@ It is an interesting fact that the latter, which in the beginning looked
 a far-fetched reason for undertaking this project, turned out to be more
 relevant as it evolved. Renovated FECs at CERN controls system are
 diskless machines, booting a custom kernel carefully configured and
-patched to match local needs. Though this kernel is essentially a stock,
-mainline tree from \url{http://kernel.org} with a very reduced 
+patched to match local needs. Alhough this kernel is essentially a
+vanilla kernel from \url{http://kernel.org} with a very reduced 
 configuration, the \verb|CONFIG_PREEMPT_RT|
-patch set applied, plus many required local
-tweaks, maintaining this system soon becomes a full time job requiring
+patch set applied, plus many local tweaks,
+maintaining this system soon becomes a full time job requiring
 great expertise and care, given its radical impact in the controls
 system stability. Relying on a stock kernel from a main
 distribution alleviates this dependency on a single, dedicated
@@ -266,7 +266,6 @@ all drivers of this family in the kernel.
 
 \section{DATA ACQUISITION DRIVERS: KERNEL FRAMEWORKS}
 
-
 The third family of drivers considered for integration upstream is less
 homogeneous than the FMC family. The BE/CO group supports a standard kit
 of hardware modules for data acquisition and general analog and digital
@@ -314,30 +313,33 @@ our whole set of drivers incorporated upstream:
 Concerning the latter,
 there are two candidate Linux kernel frameworks:
 Comedi~\cite{comedi} and IIO~\cite{iio}. Both are in
-\texttt{./staging/}, and careful analysis show that they prove
-insufficient for our needs. Then, the development of a more complete and
+\texttt{./staging/}, and careful analyses show that they prove
+insufficient for our needs. Therefore, the development of a more complete and
 acceptable framework for industial data acquisition and analog/digital
 I/O becomes part of our effort of integrating our supported
-device drivers in the Linux kernel. Such a framework,
-codenamed \texttt{zio}, is in its initial stage and intends to cover
-all the relevant aspects, far beyond the existing frameworks. To name a
-few
+device drivers in the Linux kernel. This effort is motivated both by the
+requirements of legacy drivers and by the requirements that the FMC
+family will impose in driver design, esp. in the area of operating
+system interface.
+
+Such a framework, codenamed \texttt{zio}, 
+intends to cover all the relevant aspects of data acquisition devices,
+far beyond the existing frameworks. To name a few
 \begin{Itemize}
 \item Digital and analog input and output.
 \item One-shot and streaming (buffered) data acquisition or waveform play.
 \item Resolution.
 \item Data rate.
 \item Buffer management and timing for streaming conversion.
-\item Support of DMA.
+\item Support for DMA.
 \item Calibration, offset and gain.
 \item Bit grouping in digital I/O.
 \item Timestamping.
 \item Triggering of acquisition/output.
 \item Clean design conformant to Linux kernel practice.
 \end{Itemize}
-
 At the time of this writing, beta versions of the framework software
-are in development phase~\cite{zio-git}. 
+are under development phase~\cite{zio-git}.
 
 \section{FORTHCOMING STRATEGY}
 

@@ -50,25 +50,27 @@
 
 \maketitle
 \begin{abstract}
-    We describe the experience acquired during the integration of the
-    \texttt{tsi148} driver into the main Linux kernel tree. The benefits (and
-    some of the drawbacks) for long-term software maintenance are analysed,
-    the most immediate one being the support and quality review added by an
-    enormous  community of skilled developers. Indirect consequences are also
-    analysed, and these are no less important: a serious impact in the style
-    of the development process, the use of cutting edge tools and technologies
-    supporting development, the adoption of the very strict standards enforced
-    by the Linux kernel community, etc. These elements were also exported
-    to the hardware development process in our section and we will explain
-    how they were used with a particular example in mind: the development
-    of the FMC family of boards following the Open Hardware philosophy, and
-    how its architecture must fit the Linux model. This delicate interplay of
-    hardware and software architectures is a perfect showcase of the benefits
-    we get from  the strategic decision of having our drivers integrated
-    in the kernel.  Finally, the case for a whole family of CERN-developed
-    drivers for data acquisition models, the prospects for its integration in
-    the kernel, and the adoption of a model parallel to the Comedi framework,
-    is also taken as an example of how this model will perform in the future.
+    Most device drivers written for accelerator control systems suffer from a
+    severe lack of portability due to the \emph{ad hoc} nature of the code,
+    often embodied with intimate knowledge of the particular machine it is
+    deployed in.
+%%% Markus Joos, anyone? [ for those who don't know it: at CERN there are
+%%% *two* VME driver implementations; one is like ``uio done wrong'' by
+%%% Markus Joos (from the ``Experiments''), the other is our attempt at
+%%% having a half-decent ``real'' kernel driver (we are the ``Controls''
+%%% Group.) ]
+    In this paper we challenge this practice by arguing for the opposite
+    approach: development \emph{in the open}, which in our case translates
+    into the integration of our code within the linux kernel. We make our
+    case by describing the upstream merge effort of the \texttt{tsi148}
+    driver, a critical (and complex) component of the control system.
+    The encouraging results from this effort have then led us to follow the
+    same approach with two more ambitious projects, currently in the works:
+    linux support for the upcoming FMC boards [X]
+%%% citation here needed for the FMC's, in general we need lots of
+%%% references, especially given the ridiculous amount of acronyms
+%%% that most users are lucky not to know
+    and a new I/O subsystem.
 \end{abstract}
 
 

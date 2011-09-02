@@ -23,11 +23,6 @@
     severe lack of portability due to the \emph{ad hoc} nature of the code,
     often embodied with intimate knowledge of the particular machine it is
     deployed in.
-%%% Markus Joos, anyone? [ for those who don't know it: at CERN there are
-%%% *two* VME driver implementations; one is like ``uio done wrong'' by
-%%% Markus Joos (from the ``Experiments''), the other is our attempt at
-%%% having a half-decent ``real'' kernel driver (we are the ``Controls''
-%%% Group.) ]
     In this paper we challenge this practice by arguing for the opposite
     approach: development \emph{in the open}, which in our case translates
     into the integration of our code within the linux kernel. We make our
@@ -35,10 +30,7 @@
     driver, a critical (and complex) component of the control system.
     The encouraging results from this effort have then led us to follow the
     same approach with two more ambitious projects, currently in the works:
-    linux support for the upcoming FMC boards [X]
-%%% citation here needed for the FMC's, in general we need lots of
-%%% references, especially given the ridiculous amount of acronyms
-%%% that most users are lucky not to know
+    linux support for the upcoming FMC boards~\cite{fpga-fmc,vita-fmc}
     and a new I/O subsystem.
 \end{abstract}
 

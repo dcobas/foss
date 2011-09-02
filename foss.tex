@@ -43,9 +43,9 @@ on 1140 FECs (Front End Computers), 710 of which are VME crates with SBC
 the migration from
 \begin{Itemize}
 \item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605
-    crates by August 2010), to
+    crates by August 2011), to
 \item MEN-A20 SBCs with Intel CPUs running  a real-time enabled Linux
-    (around 105 by August 2010).
+    (around 105 by August 2011).
 \end{Itemize}
 
 The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.  To support
@@ -73,10 +73,11 @@ a desirable target.
 \item Very strict process of peer review of the code by knowledgeable
     and specialized maintainers.
 \item Widespread distribution of the code base, which can then be
-    enhanced and get contributions by many other members of the community.
+    enhanced and get contributions by researchers working on similar
+    problems.
 \item Input from the topmost experts in the field.
-\item Best practice and use of the best possible tools enforced by
-    the community.
+\item Best practice and use of bleeding-edge tools selected by
+    experienced programmers
 \item Avoidance of suboptimal, ad hoc solutions in favor of the
     best ones from the technical point of view.
 \item Faster cycle of bug fixes.
@@ -106,11 +107,11 @@ the description of the integration process, but we summarize here the most
 important ones.
 
 \begin{Itemize}
-\item It's hard. One should be ready for the peculiar culture of the
+\item It's tough. One should be ready for the peculiar culture of the
     Linux Kernel Mailing List.
 \item Design, APIs and coding practice that is customary or simply
     acceptable locally must be adapted or rebuilt to comply with the strict
-    standards of the Linux kernel community. The morale is that the end
+    standards of the Linux kernel developers. The morale is that the end
     product will almost certainly be different from what one initially would
     settle for (but will also certainly be better).
 \item One must be prepared to compromise. The most practical,
@@ -130,13 +131,13 @@ Submission of source code for acceptance in the kernel is done by means of
 patches subject to a process of peer review before acceptance. The reviews
 are sometimes daunting, and much editing and re-submissions can result. This
 process of strict code review is another good practice our team adopted for
-its development process. The benefits are obvious.
+its development process, a practice that has proved very beneficial.
 
 Our fist attempt of integration of the \verb|tsi148| driver was initiated
 in mid-2010 by one of the authors (Emilio Garc\'ia Cota).
 
 By that time, a \verb|tsi148| driver had recently been admitted in
-the \texttt{staging/} area of the kernel, and was maintained by Martyn
+the \texttt{staging/} area of the kernel, its maintainer being Martyn
 Welch. This driver brought a tentative support for the VME bus that covered
 two VME-to-PCI bridges:
 \begin{Itemize}
@@ -181,11 +182,11 @@ if driver code has to remain untouched.
    \label{wishbone-enum}
 \end{figure}
 
-
-In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with the
-ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
-developed by the BE/CO Hardware and Timing section at CERN is another case in
-point for the benefits of a Linux kernel-centric approach. The hardware concept
+A family of carrier/mezzanine modules compliant with the ANSI VITA~57
+FMC standard~\cite{vita-fmc} is described in~\cite{fpga-fmc}. This kit
+of boards, developed by the BE/CO Hardware and Timing section at CERN is
+another case in point for the benefits of a Linux kernel-centric
+approach. The hardware concept
 and architecture are described in the aforementioned paper~\cite{fpga-fmc}; the
 key point is that the mezzanine provides basic circuitry, and the core of the
 application logic is implemented in the FPGA of the carrier board. The cores
@@ -237,9 +238,10 @@ for Wishbone, plus a PCI-to-Wishbone bridge driver for the carrier board.
 Modularity and reusability of cores and drivers are not the only rationale
 behind this design. Actually, the drivers for the FMC family are the second
 family of drivers planned to be integrated in the mainline kernel. Given
-that boards and their applications will be company-produced and available to
-a wide public (not only CERN-centric), having their drivers and the Wishbone
-bus integrated is the logical step to take. The Wishbone enumeration is made
+that boards and their applications will be manufactured by external
+companies and available to the general public and not only to CERN,
+having their drivers and the Wishbone
+bus integrated upstream is the logical step to take. The Wishbone enumeration is made
 possible through the definition of an FPGA configuration space developed
 in~\cite{fpga-config-space}, that will be the basis for the integration of
 all drivers of this family in the kernel.
@@ -252,7 +254,8 @@ of hardware modules for data acquisition and general analog and digital I/O,
 some of whose characteristics can be compared in table~\ref{zio-modules}. Linux
 drivers for these modules were developed in different stages of the renovation
 process, leading from legacy LynxOS drivers to Linux; therefore, there is a
-varying degree of adherence to standard practice in the Linux kernel community,
+varying degree of adherence to standard practice among the Linux kernel
+developers,
 because of the LynxOS coding practice formerly prevalent.
 
 \begin{table*}[ht]
@@ -299,14 +302,14 @@ both by the requirements of legacy drivers and by the requirements that
 the FMC family will impose in driver design, esp. in the area of operating
 system interface.
 
-Such a framework, code named \texttt{zio}, intends to cover all the relevant
-aspects of data acquisition devices, far beyond the existing frameworks. To
-name a few
+Such a framework, codenamed \texttt{zio}, intends to cover all the relevant
+aspects of data acquisition devices, far beyond the existing frameworks,
+such as
 \begin{Itemize}
 \item Digital and analog input and output.
 \item One-shot and streaming (buffered) data acquisition or waveform play.
 \item Resolution.
-\item Data rate.
+\item Sampling rate.
 \item Buffer management and timing for streaming conversion.
 \item Support for DMA.
 \item Calibration, offset and gain.
@@ -345,10 +348,11 @@ account in the course of the forthcoming integrations, are
 \item It's better to hit first. However technically sound a proposal might
 be, it is better to get it accepted when it is new, and not contending with
 other more entrenched positions.
-\item Getting input and enhancements from the community is tremendously
-beneficial to improve the quality of code, of design and of the working
-environment (tools, policies and style being naturally given by what the
-Linux community has already tried and tested over many years).
+\item Getting input and enhancements from Linux peer developers
+is tremendously beneficial to improve the quality of the code, of the
+design and of the working environment (tools, policies and style being
+naturally given by what the Linux kernel developers have already tried
+and tested over many years).
 \end{Itemize}
 
 \begin{thebibliography}{9}   % Use for  1-9  references

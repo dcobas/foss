@@ -78,7 +78,7 @@ a desirable target.
     modification.
 \item Very strict process of peer review of the code by knowledgeable
     and specialized maintainers.
-\item Widespread distribution of the codebase, which can then be
+\item Widespread distribution of the code base, which can then be
     enhanced and get contributions by many other members of the community.
 \item Input from the topmost experts in the field.
 \item Best practice and use of the best possible tools enforced by
@@ -86,7 +86,7 @@ a desirable target.
 \item Avoidance of suboptimal, ad hoc solutions in favor of the
     best ones from the technical point of view.
 \item Faster cycle of bug fixes.
-\item Contributing back in return to the many benefits the FOSS comunity
+\item Contributing back in return to the many benefits the FOSS community
     gives us.
 \item Being able to drive a critical hardware component with software
     in the vanilla kernel, with no local, idiosyncratic modifications.
@@ -96,7 +96,7 @@ It is an interesting fact that the latter, which in the beginning looked
 a far-fetched reason for undertaking this project, turned out to be
 more relevant as it evolved. Renovated FECs at CERN controls system
 are diskless machines, booting a custom kernel carefully configured and
-patched to match local needs. Alhough this kernel is essentially a vanilla
+patched to match local needs. Although this kernel is essentially a vanilla
 kernel from \url{http://kernel.org} with a very reduced configuration, the
 \verb|CONFIG_PREEMPT_RT| patch set applied, plus many local tweaks, maintaining
 this system soon becomes a full time job requiring great expertise and care,
@@ -134,7 +134,7 @@ important ones.
 
 Submission of source code for acceptance in the kernel is done by means of
 patches subject to a process of peer review before acceptance. The reviews
-are sometimes daunting, and much edition and re-submissions can result. This
+are sometimes daunting, and much editing and re-submissions can result. This
 process of strict code review is another good practice our team adopted for
 its development process. The benefits are obvious.
 
@@ -143,7 +143,7 @@ in mid-2010 by one of the authors (Emilio Garc\'ia Cota).
 
 By that time, a \verb|tsi148| driver had recently been admitted in
 the \texttt{staging/} area of the kernel, and was maintained by Martyn
-Welch. This driver brought a temptative support for the VME bus that covered
+Welch. This driver brought a tentative support for the VME bus that covered
 two VME-to-PCI bridges:
 \begin{Itemize}
 \item The Tundra Universe chips, with work derived from VMELinux by John
@@ -162,7 +162,7 @@ and the bulk of modifications concerning the device model were partially
 acknowledged. This led to a third iteration of the process, and the
 re-issue of a third patch set in August 2011. At the time of this writing,
 the definitive submission and acceptance of the last set of patches (five
-changesets) concerning the core device model is in its final stage, and will
+change sets) concerning the core device model is in its final stage, and will
 be applied by the main kernel maintainer in the next merge window.
 
 Although the whole set of patches concerning bug fixes and device model of the
@@ -298,14 +298,14 @@ whole set of drivers incorporated upstream:
 Concerning the latter, there are two candidate Linux kernel frameworks:
 Comedi~\cite{comedi} and IIO~\cite{iio}. Both are in \texttt{./staging/}, and
 careful analyses show that they prove insufficient for our needs. Therefore,
-the development of a more complete and acceptable framework for industial data
+the development of a more complete and acceptable framework for industrial data
 acquisition and analog/digital I/O becomes part of our effort of integrating
 our supported device drivers in the Linux kernel. This effort is motivated
 both by the requirements of legacy drivers and by the requirements that
 the FMC family will impose in driver design, esp. in the area of operating
 system interface.
 
-Such a framework, codenamed \texttt{zio}, intends to cover all the relevant
+Such a framework, code named \texttt{zio}, intends to cover all the relevant
 aspects of data acquisition devices, far beyond the existing frameworks. To
 name a few
 \begin{Itemize}
@@ -319,7 +319,7 @@ name a few
 \item Bit grouping in digital I/O.
 \item Timestamping.
 \item Triggering of acquisition/output.
-\item Clean design conformant to Linux kernel practice.
+\item Clean design conforming to Linux kernel practice.
 \end{Itemize}
 At the time of this writing, prototype versions of the framework software
 are under development phase~\cite{zio-git}.
@@ -337,7 +337,7 @@ handful of key milestones
 \item Develop the \texttt{zio} framework as a competitive alternative
 	to Comedi and IIO.
 	\label{zio}
-\item Intiate integration of the \texttt{sis33xx} drivers into the
+\item Initiate integration of the \texttt{sis33xx} drivers into the
     \texttt{zio} framework and the mainstream kernel.
 \end{Enumerate}
 Points~\ref{wb}, \ref{api} and~\ref{zio} are short-term priorities that

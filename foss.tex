@@ -3,17 +3,48 @@
 \usepackage{booktabs}
 \usepackage{url}
 
+%%% wrt style, here are the guidelines:
+%%%   The names of the authors and their organization,
+%%%   affiliation and mailing address should be listed
+%%%   alphabetically in 12 pt upper and lower case letters,
+%%%   grouped by affiliation. When there is more than one
+%%%   author, the submitting author's name should be listed
+%%%   first, followed by the other names in alphabetical order.
+%%%
+%%% Our first author is david, all the others go alphabetically
+%%% (sorted by surname) after him. I use daggers to group us by
+%%% affiliation.
+%%% full guidelines:
+%%%   http://icalepcs2011.esrf.eu/authors-info/guidelines
+
 %%   VARIABLE HEIGHT FOR THE TITLE BOX (default 35mm)
-\setlength{\titleblockheight}{40mm}
+\setlength{\titleblockheight}{48mm}
+
+\newcommand{\authorsepdist}{5mm}
+\newcommand{\authorsep}{\hspace{\authorsepdist}}
+\newcommand{\affcern}{$^\dag$}
+\newcommand{\affpavia}{$^\ddag$}
 
 \title{%
     FREE AND OPEN SOURCE SOFTWARE AT CERN:\\
     INTEGRATION OF DRIVERS IN THE LINUX KERNEL}
 \author{%
-	Juan David Gonz\'alez Cobas, Emilio Garc\'ia Cota,
-	Samuel Iglesias Gons\'alvez,\\
-	Julian Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
-	Alessandro Rubini, Federico Vaga (University of Pavia)}
+	Juan David Gonz\'alez Cobas\affcern \authorsep%
+	Emilio G. Cota\affcern \authorsep%
+%%% I use Emilio G. Cota everywhere, I don't use Garcia at all anymore.
+	Samuel Iglesias Gons\'alvez\affcern \authorsep%
+	Julian Lewis\affcern \authorsep\\
+	Alessandro Rubini\affpavia \authorsep%
+	Javier Serrano\affcern \authorsep%
+	Federico Vaga\affpavia \authorsep%
+	Manohar Vanga\affcern \authorsep\\
+%%% Should Manohar have \affpavia as well?
+	\\
+%%% Please fill these appropriately, with full addresses etc,
+%%% as per the guidelines
+	\affcern CERN, Beams Department. Geneva, Switzerland.\\
+	\affpavia University of Pavia. Pavia, Italy.
+}
 
 \begin{document}
 

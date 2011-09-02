@@ -51,33 +51,33 @@
 \maketitle
 \begin{abstract}
     We describe the experience acquired during the integration of the
-    \texttt{tsi148} driver
-    into the main Linux kernel tree. The benefits (and some of the drawbacks) for
-    long-term software maintenance are analysed, the most immediate one being the
-    support and quality review added by an enormous  community of skilled
-    developers. Indirect consequences are also analysed, and these are no less
-    important: a serious impact in the style of the development process, the use of
-    cutting edge tools and technologies supporting development, the adoption of the
-    very strict standards enforced by the Linux kernel community, etc. These
-    elements were also exported to the hardware development process in our section
-    and we will explain how they were used with a particular example in mind: the
-    development of the FMC family of boards following the Open Hardware philosophy,
-    and how its architecture must fit the Linux model. This delicate interplay of
-    hardware and software architectures is a perfect showcase of the benefits we
-    get from  the strategic decision of having our drivers integrated in the
-    kernel.  Finally, the case for a whole family of CERN-developed drivers for
-    data acquisition models, the prospects for its integration in the kernel, and
-    the adoption of a model parallel to the Comedi framework, is also
-    taken as an example of how this model will perform in the future.
+    \texttt{tsi148} driver into the main Linux kernel tree. The benefits (and
+    some of the drawbacks) for long-term software maintenance are analysed,
+    the most immediate one being the support and quality review added by an
+    enormous  community of skilled developers. Indirect consequences are also
+    analysed, and these are no less important: a serious impact in the style
+    of the development process, the use of cutting edge tools and technologies
+    supporting development, the adoption of the very strict standards enforced
+    by the Linux kernel community, etc. These elements were also exported
+    to the hardware development process in our section and we will explain
+    how they were used with a particular example in mind: the development
+    of the FMC family of boards following the Open Hardware philosophy, and
+    how its architecture must fit the Linux model. This delicate interplay of
+    hardware and software architectures is a perfect showcase of the benefits
+    we get from  the strategic decision of having our drivers integrated
+    in the kernel.  Finally, the case for a whole family of CERN-developed
+    drivers for data acquisition models, the prospects for its integration in
+    the kernel, and the adoption of a model parallel to the Comedi framework,
+    is also taken as an example of how this model will perform in the future.
 \end{abstract}
 
 
 \section{TSI148 DRIVER INTEGRATION IN THE KERNEL}
 \subsection{Rationale}
-The VME bus is a central component of the Controls System at CERN. We
-rely on 1140 FECs (Front End Computers), 710 of which are VME crates
-with SBC (Single Board Computers). A process of renovation is in course,
-involving the migration from
+The VME bus is a central component of the Controls System at CERN. We rely
+on 1140 FECs (Front End Computers), 710 of which are VME crates with SBC
+(Single Board Computers). A process of renovation is in course, involving
+the migration from
 \begin{Itemize}
 \item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605
     crates by August 2010), to
@@ -85,27 +85,24 @@ involving the migration from
     (around 105 by August 2010).
 \end{Itemize}
 
-The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.
-To support the functionalities required, and for maximum backward
-compatibility with the legacy CES API, a device driver was developed
-at CERN group BE/CO in spring 2009. Clearly, this is a strategic
-component of the controls system: every VME device relies on the
-provided programming interface to the VME bus. The CERN-developed driver
-offers, therefore, a CES compatibility API to facilitate the transition
-during the renovation process, and a new API more similar to common
-practice
-in the Linux kernel.
+The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.  To support
+the functionalities required, and for maximum backward compatibility with
+the legacy CES API, a device driver was developed at CERN group BE/CO in
+spring 2009. Clearly, this is a strategic component of the controls system:
+every VME device relies on the provided programming interface to the VME
+bus. The CERN-developed driver offers, therefore, a CES compatibility API
+to facilitate the transition during the renovation process, and a new API
+more similar to common practice in the Linux kernel.
 
 After a period of validation and improvement taking place during 2010,
-the strategic decision was taken to submit the driver for
-inclusion in the mainline Linux kernel tree. The ongoing process, started
-beginning 2011 and in course of completion, is described in the following
-sections.
+the strategic decision was taken to submit the driver for inclusion in the
+mainline Linux kernel tree. The ongoing process, started beginning 2011 and
+in course of completion, is described in the following sections.
 
 \subsection{Benefits}
 
-There are many reasons that make the insertion of code in the mainline
-kernel a desirable target.
+There are many reasons that make the insertion of code in the mainline kernel
+a desirable target.
 
 \begin{Itemize}
 \item Smoother maintenance in the (rather frequent) event of kernel API
@@ -127,34 +124,32 @@ kernel a desirable target.
 \end{Itemize}
 
 It is an interesting fact that the latter, which in the beginning looked
-a far-fetched reason for undertaking this project, turned out to be more
-relevant as it evolved. Renovated FECs at CERN controls system are
-diskless machines, booting a custom kernel carefully configured and
-patched to match local needs. Alhough this kernel is essentially a
-vanilla kernel from \url{http://kernel.org} with a very reduced
-configuration, the \verb|CONFIG_PREEMPT_RT|
-patch set applied, plus many local tweaks,
-maintaining this system soon becomes a full time job requiring
-great expertise and care, given its radical impact in the controls
-system stability. Relying on a stock kernel from a main
-distribution alleviates this dependency on a single, dedicated
-maintainer, and pushes strongly towards having the \texttt{tsi148}
+a far-fetched reason for undertaking this project, turned out to be
+more relevant as it evolved. Renovated FECs at CERN controls system
+are diskless machines, booting a custom kernel carefully configured and
+patched to match local needs. Alhough this kernel is essentially a vanilla
+kernel from \url{http://kernel.org} with a very reduced configuration, the
+\verb|CONFIG_PREEMPT_RT| patch set applied, plus many local tweaks, maintaining
+this system soon becomes a full time job requiring great expertise and care,
+given its radical impact in the controls system stability. Relying on a
+stock kernel from a main distribution alleviates this dependency on a single,
+dedicated maintainer, and pushes strongly towards having the \texttt{tsi148}
 driver integrated upstream.
 
 \subsection{Drawbacks}
 
 Some of the drawbacks herewith enumerated will be elaborated further in
-the description of the integration process, but we summarize here the
-most important ones.
+the description of the integration process, but we summarize here the most
+important ones.
 
 \begin{Itemize}
 \item It's hard. One should be ready for the peculiar culture of the
     Linux Kernel Mailing List.
 \item Design, APIs and coding practice that is customary or simply
-    acceptable locally must be adapted or rebuilt to comply with the
-    strict standards of the Linux kernel community. The morale
-    is that the end product will almost certainly be different from what one
-    initially would settle for (but will also certainly be better).
+    acceptable locally must be adapted or rebuilt to comply with the strict
+    standards of the Linux kernel community. The morale is that the end
+    product will almost certainly be different from what one initially would
+    settle for (but will also certainly be better).
 \item One must be prepared to compromise. The most practical,
     short-lived solution might not be the technically perfect one kernel
     maintainers aim at.
@@ -168,19 +163,18 @@ most important ones.
 
 \subsection{The process}
 
-Submission of source code for acceptance in the kernel is done by means
-of patches subject to a process of peer review before acceptance. The
-reviews are sometimes daunting, and much edition and re-submissions can
-result. This process of strict code review is another good practice our
-team adopted for its development process. The benefits are obvious.
+Submission of source code for acceptance in the kernel is done by means of
+patches subject to a process of peer review before acceptance. The reviews
+are sometimes daunting, and much edition and re-submissions can result. This
+process of strict code review is another good practice our team adopted for
+its development process. The benefits are obvious.
 
-Our fist attempt of integration of the \verb|tsi148| driver
-was initiated in mid-2010 by one of the authors (Emilio Garc\'ia
-Cota).
+Our fist attempt of integration of the \verb|tsi148| driver was initiated
+in mid-2010 by one of the authors (Emilio Garc\'ia Cota).
 
-By that time, a \verb|tsi148| driver had recently been admitted in the
-\texttt{staging/} area of the kernel, and was maintained by Martyn Welch. This
-driver brought a temptative support for the VME bus that covered
+By that time, a \verb|tsi148| driver had recently been admitted in
+the \texttt{staging/} area of the kernel, and was maintained by Martyn
+Welch. This driver brought a temptative support for the VME bus that covered
 two VME-to-PCI bridges:
 \begin{Itemize}
 \item The Tundra Universe chips, with work derived from VMELinux by John
@@ -188,32 +182,28 @@ Huggins and Michael Wyrick.
 \item The Tundra TSI148 chip, inspired in the above.
 \end{Itemize}
 
-The set of patches initially submitted provided improvements in several
-areas, esp. in orthodox implementation of the Linux bus/device model
-concepts.
-Acceptance by the maintainer was partial, and modifications related to
-the device model implementation remained controversial and not accepted.
+The set of patches initially submitted provided improvements in several areas,
+esp. in orthodox implementation of the Linux bus/device model concepts.
+Acceptance by the maintainer was partial, and modifications related to the
+device model implementation remained controversial and not accepted.
 
-The submission was re-approached beginning 2011 by another of the
-authors (Manohar Vanga). In this case, some bugs in the staging driver
-were fixed, and the bulk of modifications concerning the device model
-were partially acknowledged. This led to a third iteration of the
-process, and the re-issue of a third patch set in August 2011. At the
-time of this writing, the definitive submission and acceptance of the
-last set of patches (five changesets) concerning the core device model
-is in its final stage, and will be applied by the main kernel maintainer
-in the next merge window.
+The submission was re-approached beginning 2011 by another of the authors
+(Manohar Vanga). In this case, some bugs in the staging driver were fixed,
+and the bulk of modifications concerning the device model were partially
+acknowledged. This led to a third iteration of the process, and the
+re-issue of a third patch set in August 2011. At the time of this writing,
+the definitive submission and acceptance of the last set of patches (five
+changesets) concerning the core device model is in its final stage, and will
+be applied by the main kernel maintainer in the next merge window.
 
-Although the whole set of patches concerning bug
-fixes and device model of the \verb|tsi148| VME bridge driver is
-finally accepted, there is still a long way before reaching
-the final desideratum, i.e., driving our \verb|tsi148| devices
-with stock software from the mainline kernel tree.
+Although the whole set of patches concerning bug fixes and device model of the
+\verb|tsi148| VME bridge driver is finally accepted, there is still a long
+way before reaching the final desideratum, i.e., driving our \verb|tsi148|
+devices with stock software from the mainline kernel tree.
 \begin{Itemize}
-\item The outstanding goal should be now getting the VME driver out
-of the \verb|./staging/| tree. For that purpose, code must be worked on
-(or it'll die), and set up to the highest standard of quality to be
-accepted upstream.
+\item The outstanding goal should be now getting the VME driver out of the
+\verb|./staging/| tree. For that purpose, code must be worked on (or it'll
+die), and set up to the highest standard of quality to be accepted upstream.
 \item There are API  incompatibilities with the driver currently used at
 CERN; this implies that a transient kernel module must adapt interfaces
 if driver code has to remain untouched.
@@ -229,26 +219,24 @@ if driver code has to remain untouched.
 \end{figure}
 
 
-In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant
-with the ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
-developed by the BE/CO Hardware and Timing section at CERN is
-another case in point for the benefits of a Linux kernel-centric
-approach. The hardware concept and architecture are described
-in the aforementioned paper~\cite{fpga-fmc}; the key point is that the
-mezzanine provides basic circuitry, and the core of the application
-logic is implemented in the FPGA of the carrier board. The cores inside
-this FPGA are interconnected via a Wishbone~\cite{wishbone-spec} bus.
+In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant with the
+ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
+developed by the BE/CO Hardware and Timing section at CERN is another case in
+point for the benefits of a Linux kernel-centric approach. The hardware concept
+and architecture are described in the aforementioned paper~\cite{fpga-fmc}; the
+key point is that the mezzanine provides basic circuitry, and the core of the
+application logic is implemented in the FPGA of the carrier board. The cores
+inside this FPGA are interconnected via a Wishbone~\cite{wishbone-spec} bus.
 
 
-From the software
-point of view, a particular instance of this family behaves like a
-PCI-to-Wishbone or VME-to-Wishbone bridge. The Wishbone bus
-interconnects a set of cores providing functionalities that are either
+From the software point of view, a particular instance of this family
+behaves like a PCI-to-Wishbone or VME-to-Wishbone bridge. The Wishbone
+bus interconnects a set of cores providing functionalities that are either
 common to the whole family of mezzanines, or specific to the application
 board actually plugged in the FMC slot. We show in figure~\ref{slow-adc}
-the block diagram of the FMC 100MS 14 bit ADC,
-a typical example of an FPGA application comprising cores for, among
-others
+the block diagram of the FMC 100MS 14 bit ADC, a typical example of an FPGA
+application comprising cores for, among others
+
 \begin{Itemize}
 \item Basic I${}^2$C interfacing to the mezzanine board.
 \item Wishbone mastering.
@@ -257,9 +245,9 @@ others
 \item Interrupt control.
 \end{Itemize}
 The consequence of this modular design of the application FPGA is that
-the device driver architecture reflects the structure of this set of
-cores (see figure~\ref{wishbone-enum}). The driver for the carrier board
-performs essentially the following basic functions
+the device driver architecture reflects the structure of this set of cores
+(see figure~\ref{wishbone-enum}). The driver for the carrier board performs
+essentially the following basic functions
 \begin{Itemize}
 \item Identify the carrier board and initialize it.
 \item Perform a basic identification of the mezzanine(s) installed in
@@ -271,11 +259,10 @@ performs essentially the following basic functions
 \item Register the devices those cores implement and install the drivers
     associated to them.
 \end{Itemize}
-The process is directly implied by how the Linux kernel device
-model is implemented as described in~\cite{device-model} or in chapter~14
+The process is directly implied by how the Linux kernel device model
+is implemented as described in~\cite{device-model} or in chapter~14
 of~\cite{rubini}. Conceptually, it amounts to the provision of a bus driver
-for Wishbone, plus a PCI-to-Wishbone bridge driver for the
-carrier board.
+for Wishbone, plus a PCI-to-Wishbone bridge driver for the carrier board.
 
 \begin{figure}[t]
    \centering
@@ -284,14 +271,13 @@ carrier board.
    \label{slow-adc}
 \end{figure}
 
-Modularity and reusability of cores and drivers are not the only
-rationale behind this design. Actually, the drivers for the FMC family
-are the second family of drivers planned to be integrated in the
-mainline kernel. Given that boards and their applications will be
-company-produced and available to a wide public (not only CERN-centric),
-having their drivers and the Wishbone bus integrated is the logical step
-to take. The Wishbone enumeration is made possible through the
-definition of an FPGA configuration space developed
+Modularity and reusability of cores and drivers are not the only rationale
+behind this design. Actually, the drivers for the FMC family are the second
+family of drivers planned to be integrated in the mainline kernel. Given
+that boards and their applications will be company-produced and available to
+a wide public (not only CERN-centric), having their drivers and the Wishbone
+bus integrated is the logical step to take. The Wishbone enumeration is made
+possible through the definition of an FPGA configuration space developed
 in~\cite{fpga-config-space}, that will be the basis for the integration of
 all drivers of this family in the kernel.
 
@@ -299,13 +285,12 @@ all drivers of this family in the kernel.
 
 The third family of drivers considered for integration upstream is less
 homogeneous than the FMC family. The BE/CO group supports a standard kit
-of hardware modules for data acquisition and general analog and digital
-I/O, some of whose characteristics can be compared in
-table~\ref{zio-modules}. Linux drivers for these modules were developed in
-different stages of the renovation process, leading from legacy
-LynxOS drivers to Linux; therefore, there is a varying degree of adherence to
-standard practice in the Linux kernel community, because of the
-LynxOS coding practice formerly prevalent.
+of hardware modules for data acquisition and general analog and digital I/O,
+some of whose characteristics can be compared in table~\ref{zio-modules}. Linux
+drivers for these modules were developed in different stages of the renovation
+process, leading from legacy LynxOS drivers to Linux; therefore, there is a
+varying degree of adherence to standard practice in the Linux kernel community,
+because of the LynxOS coding practice formerly prevalent.
 
 \begin{table*}[ht]
    \centering
@@ -334,28 +319,26 @@ LynxOS coding practice formerly prevalent.
    \label{zio-modules}
 \end{table*}
 
-Two needs arise here clearly, in the light of our intention of having
-our whole set of drivers incorporated upstream:
+Two needs arise here clearly, in the light of our intention of having our
+whole set of drivers incorporated upstream:
 \begin{Itemize}
 \item Proceed to a more homogeneous, Linux-only code base.
 \item Provide a general framework for data acquisition and control
     devices.
 \end{Itemize}
-Concerning the latter,
-there are two candidate Linux kernel frameworks:
-Comedi~\cite{comedi} and IIO~\cite{iio}. Both are in
-\texttt{./staging/}, and careful analyses show that they prove
-insufficient for our needs. Therefore, the development of a more complete and
-acceptable framework for industial data acquisition and analog/digital
-I/O becomes part of our effort of integrating our supported
-device drivers in the Linux kernel. This effort is motivated both by the
-requirements of legacy drivers and by the requirements that the FMC
-family will impose in driver design, esp. in the area of operating
+Concerning the latter, there are two candidate Linux kernel frameworks:
+Comedi~\cite{comedi} and IIO~\cite{iio}. Both are in \texttt{./staging/}, and
+careful analyses show that they prove insufficient for our needs. Therefore,
+the development of a more complete and acceptable framework for industial data
+acquisition and analog/digital I/O becomes part of our effort of integrating
+our supported device drivers in the Linux kernel. This effort is motivated
+both by the requirements of legacy drivers and by the requirements that
+the FMC family will impose in driver design, esp. in the area of operating
 system interface.
 
-Such a framework, codenamed \texttt{zio},
-intends to cover all the relevant aspects of data acquisition devices,
-far beyond the existing frameworks. To name a few
+Such a framework, codenamed \texttt{zio}, intends to cover all the relevant
+aspects of data acquisition devices, far beyond the existing frameworks. To
+name a few
 \begin{Itemize}
 \item Digital and analog input and output.
 \item One-shot and streaming (buffered) data acquisition or waveform play.
@@ -374,8 +357,8 @@ are under development phase~\cite{zio-git}.
 
 \section{FORTHCOMING STRATEGY}
 
-The strategy for inclusion of our driver kit in the kernel relies now on
-a handful of key milestones
+The strategy for inclusion of our driver kit in the kernel relies now on a
+handful of key milestones
 \begin{Enumerate}
 \item Initiate upstream integration of the Wishbone bus driver.
 	\label{wb}
@@ -393,12 +376,12 @@ should come out as quite straightforward.
 
 \section{CONCLUSIONS AND LESSONS LEARNED}
 
-The main lessons we got from this process, that we will have to take
-into account in the course of the forthcoming integrations, are
+The main lessons we got from this process, that we will have to take into
+account in the course of the forthcoming integrations, are
 \begin{Itemize}
-\item It's better to hit first. However technically sound a proposal
-might be, it is better to get it accepted when it is new, and not
-contending with other more entrenched positions.
+\item It's better to hit first. However technically sound a proposal might
+be, it is better to get it accepted when it is new, and not contending with
+other more entrenched positions.
 \item Getting input and enhancements from the community is tremendously
 beneficial to improve the quality of code, of design and of the working
 environment (tools, policies and style being naturally given by what the

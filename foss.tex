@@ -43,10 +43,10 @@
 
 \section{TSI148 DRIVER INTEGRATION IN THE KERNEL}
 \subsection{Rationale}
-The VME bus is a central component of the Controls System at CERN. We 
+The VME bus is a central component of the Controls System at CERN. We
 rely on 1140 FECs (Front End Computers), 710 of which are VME crates
 with SBC (Single Board Computers). A process of renovation is in course,
-involving the migration from 
+involving the migration from
 \begin{Itemize}
 \item CES RIO2/RIO3 SBCs with PowerPC CPUs runing LynxOS (around 605
     crates by August 2010), to
@@ -56,7 +56,7 @@ involving the migration from
 
 The MEN-A20 SBC incorporates a TSI148 VME-to-PCI-X bridge chip.
 To support the functionalities required, and for maximum backward
-compatibility with the legacy CES API, a device driver was developed 
+compatibility with the legacy CES API, a device driver was developed
 at CERN group BE/CO in spring 2009. Clearly, this is a strategic
 component of the controls system: every VME device relies on the
 provided programming interface to the VME bus. The CERN-developed driver
@@ -100,7 +100,7 @@ a far-fetched reason for undertaking this project, turned out to be more
 relevant as it evolved. Renovated FECs at CERN controls system are
 diskless machines, booting a custom kernel carefully configured and
 patched to match local needs. Alhough this kernel is essentially a
-vanilla kernel from \url{http://kernel.org} with a very reduced 
+vanilla kernel from \url{http://kernel.org} with a very reduced
 configuration, the \verb|CONFIG_PREEMPT_RT|
 patch set applied, plus many local tweaks,
 maintaining this system soon becomes a full time job requiring
@@ -119,7 +119,7 @@ most important ones.
 \begin{Itemize}
 \item It's hard. One should be ready for the peculiar culture of the
     Linux Kernel Mailing List.
-\item Design, APIs and coding practice that is customary or simply 
+\item Design, APIs and coding practice that is customary or simply
     acceptable locally must be adapted or rebuilt to comply with the
     strict standards of the Linux kernel community. The morale
     is that the end product will almost certainly be different from what one
@@ -130,7 +130,7 @@ most important ones.
 \item Maintainers are occasionally hard to deal with.
 \item The process may be long.
 \item Gradual changes are likely to be better accepted that big chunks
-    of code submitted out of the blue.  
+    of code submitted out of the blue.
 \item Having a history of prior contributions gives more respectability
     and ease of acceptance: the system is based on meritocracy.
 \end{Itemize}
@@ -145,7 +145,7 @@ team adopted for its development process. The benefits are obvious.
 
 Our fist attempt of integration of the \verb|tsi148| driver
 was initiated in mid-2010 by one of the authors (Emilio Garc\'ia
-Cota). 
+Cota).
 
 By that time, a \verb|tsi148| driver had recently been admitted in the
 \texttt{staging/} area of the kernel, and was maintained by Martyn Welch. This
@@ -198,7 +198,7 @@ if driver code has to remain untouched.
 \end{figure}
 
 
-In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant 
+In~\cite{fpga-fmc}, a family of carrier/mezzanine boards compliant
 with the ANSI VITA~57 FMC standard~\cite{vita-fmc} is described. This kit of boards,
 developed by the BE/CO Hardware and Timing section at CERN is
 another case in point for the benefits of a Linux kernel-centric
@@ -237,7 +237,7 @@ performs essentially the following basic functions
 \item Register a Wishbone bus with the kernel.
 \item Enumerate the cores in that firmware (to wit, the
     inner blocks in figure~\ref{slow-adc}).
-\item Register the devices those cores implement and install the drivers 
+\item Register the devices those cores implement and install the drivers
     associated to them.
 \end{Itemize}
 The process is directly implied by how the Linux kernel device
@@ -272,7 +272,7 @@ of hardware modules for data acquisition and general analog and digital
 I/O, some of whose characteristics can be compared in
 table~\ref{zio-modules}. Linux drivers for these modules were developed in
 different stages of the renovation process, leading from legacy
-LynxOS drivers to Linux; therefore, there is a varying degree of adherence to 
+LynxOS drivers to Linux; therefore, there is a varying degree of adherence to
 standard practice in the Linux kernel community, because of the
 LynxOS coding practice formerly prevalent.
 
@@ -281,8 +281,8 @@ LynxOS coding practice formerly prevalent.
    \caption{BE/CO data acquisition modules}
    \begin{tabular}{llllll}
        \toprule
-	\textbf{Module}& \textbf{Type}& \textbf{Channels}& 
-	\textbf{Resolution}& \textbf{Speed}& \textbf{Bus} \\ 
+	\textbf{Module}& \textbf{Type}& \textbf{Channels}&
+	\textbf{Resolution}& \textbf{Speed}& \textbf{Bus} \\
        \midrule
 	VMOD-12E8/16    &  Analog input  & 8/16ch & 12b    & 15us/sample & VME/PCI  \\
 	VD80            &  Analog input  & 16ch   & 16b    & 200kS/s     & VME  \\
@@ -322,7 +322,7 @@ requirements of legacy drivers and by the requirements that the FMC
 family will impose in driver design, esp. in the area of operating
 system interface.
 
-Such a framework, codenamed \texttt{zio}, 
+Such a framework, codenamed \texttt{zio},
 intends to cover all the relevant aspects of data acquisition devices,
 far beyond the existing frameworks. To name a few
 \begin{Itemize}

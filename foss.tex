@@ -18,7 +18,30 @@
 \begin{document}
 
 \maketitle
+
 \begin{abstract}
+    We describe the experience acquired during the integration of the
+    \texttt{tsi148} driver
+    into the main Linux kernel tree. The benefits (and some of the drawbacks) for
+    long-term software maintenance are analysed, the most immediate one being the
+    support and quality review added by an enormous  community of skilled
+    developers. Indirect consequences are also analysed, and these are no less
+    important: a serious impact in the style of the development process, the use of
+    cutting edge tools and technologies supporting development, the adoption of the
+    very strict standards enforced by the Linux kernel community, etc. These
+    elements were also exported to the hardware development process in our section
+    and we will explain how they were used with a particular example in mind: the
+    development of the FMC family of boards following the Open Hardware philosophy,
+    and how its architecture must fit the Linux model. This delicate interplay of
+    hardware and software architectures is a perfect showcase of the benefits we
+    get from  the strategic decision of having our drivers integrated in the
+    kernel.  Finally, the case for a whole family of CERN-developed drivers for
+    data acquisition models, the prospects for its integration in the kernel, and
+    the adoption of a model parallel to the Comedi framework, is also
+    taken as an example of how this model will perform in the future.
+\end{abstract}
+
+\section{INTRODUCTION}
     Most device drivers written for accelerator control systems suffer from a
     severe lack of portability due to the \emph{ad hoc} nature of the code,
     often embodied with intimate knowledge of the particular machine it is
@@ -32,8 +55,6 @@
     same approach with two more ambitious projects, currently in the works:
     linux support for the upcoming FMC boards~\cite{fpga-fmc,vita-fmc}
     and a new I/O subsystem.
-\end{abstract}
-
 
 \section{TSI148 DRIVER INTEGRATION IN THE KERNEL}
 \subsection{Rationale}

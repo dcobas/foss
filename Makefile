@@ -24,4 +24,4 @@ clean:
 zip:
 	zip foss`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:
-	acroread foss.pdf &
+	evince foss.pdf &

@@ -23,6 +23,6 @@ $(CODE).dvi: $(FIGS) $(CODE).tex
 clean:
 	rm -rf *.aux *.dvi *.log *.pdf *.bak
 zip:
-	zip $(CODE)`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
+	zip $(CODE)_`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:
 	acroread $(CODE).pdf &

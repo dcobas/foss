@@ -87,18 +87,13 @@ a desirable target.
     in the vanilla kernel, with no local, idiosyncratic modifications.
 \end{Itemize}
 
-It is an interesting fact that the latter, which in the beginning looked
-a far-fetched reason for undertaking this project, turned out to be
-more relevant as it evolved. Renovated FECs at CERN controls system
-are diskless machines, booting a custom kernel carefully configured and
-patched to match local needs. Although this kernel is essentially a vanilla
-kernel from \url{http://kernel.org} with a very reduced configuration, the
-\verb|CONFIG_PREEMPT_RT| patch set applied, plus many local tweaks, maintaining
-this system soon becomes a full time job requiring great expertise and care,
-given its radical impact in the controls system stability. Relying on a
-stock kernel from a main distribution alleviates this dependency on a single,
-dedicated maintainer, and pushes strongly towards having the \texttt{tsi148}
-driver integrated upstream.
+It is worth noting that the importance of the last point only became
+apparent once the merge effort was well underway. In our control system,
+renovated FECs are \emph{diskless} machines that boot a custom \emph{rt}
+kernel~\cite{linux-rt}, carefully configured and patched to match local
+needs.  The upstream merge of the \emph{tsi148} driver allows us to deploy
+off-the-shelf kernels packaged by linux distributions, thus largely reducing
+the kernel maintenance burden.
 
 \subsection{Drawbacks}
 
@@ -403,6 +398,10 @@ see \texttt{Documentation/driver-model/} in the Linux kernel sources.
 \bibitem{stable-api-nonsense}
 G. Kroah-Hartman, ``The Linux Kernel Driver Interface'', see
 \texttt{Documentation/stable\_api\_nonsense.txt} in the Linux kernel sources.
+
+\bibitem{linux-rt}
+S. Rostedt and D.V. Hart, ``Internals of the RT patch''. In Linux
+Symposium, 2007.
 
 \bibitem{rubini}
 J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd

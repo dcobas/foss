@@ -113,10 +113,12 @@ important ones.
     short-lived solution might not be the technically perfect one kernel
     maintainers aim at.
 \item Maintainers are occasionally hard to deal with.
-\item The process may be long.
-\item Gradual changes are likely to be better accepted that big chunks
-    of code submitted out of the blue.
-\item Having a history of prior contributions gives more respectability
+\item The review process may be long; several iterations are usually
+    necessary when merging significant changes.
+\item Small, incremental changes are more likely to be accepted than
+    big, hard-to-digest ones. The rule of thumb is to ``Separate \emph{logical
+    changes} into a single patch file.''~\cite{submitting-patches}
+\item Having a good history of prior contributions gives more respectability
     and ease of acceptance: the system is based on meritocracy.
 \end{Itemize}
 
@@ -402,6 +404,10 @@ G. Kroah-Hartman, ``The Linux Kernel Driver Interface'', see
 \bibitem{linux-rt}
 S. Rostedt and D.V. Hart, ``Internals of the RT patch''. In Linux
 Symposium, 2007.
+
+\bibitem{submitting-patches}
+``Submitting Patches'',
+see \texttt{Documentation/SubmittingPatches} in the Linux kernel sources.
 
 \bibitem{rubini}
 J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd

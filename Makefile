@@ -5,6 +5,7 @@ STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
 FIGS=block_diagram.eps wishbone-enum.eps
 FIGFIGS=block_diagram.fig wishbone-enum.fig
 ARCHIVE=Makefile $(CODE).tex $(STYLES) $(FIGFIGS) $(FIGS)
+.PRECIOUS: $(CODE).ps
 
 default: $(CODE).pdf view
 all: clean default zip

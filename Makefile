@@ -1,14 +1,15 @@
 .SUFFIXES:	.fig .eps .tex .dvi .ps .pdf
 
+CODE=THCHMUST04
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
 FIGS=block_diagram.eps wishbone-enum.eps
 FIGFIGS=block_diagram.fig wishbone-enum.fig
-ARCHIVE=Makefile foss.tex $(STYLES) $(FIGFIGS) $(FIGS)
+ARCHIVE=Makefile $(CODE).tex $(STYLES) $(FIGFIGS) $(FIGS)
 
-default: foss.pdf view
+default: $(CODE).pdf view
 all: clean default zip
 
-foss.dvi: $(FIGS) foss.tex
+$(CODE).dvi: $(FIGS) $(CODE).tex
 
 .tex.dvi:
 	latex $* && latex $*
@@ -22,6 +23,6 @@ foss.dvi: $(FIGS) foss.tex
 clean:
 	rm -rf *.aux *.dvi *.log *.pdf *.bak
 zip:
-	zip foss`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
+	zip $(CODE)`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:
-	acroread foss.pdf &
+	acroread $(CODE).pdf &

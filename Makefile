@@ -4,10 +4,12 @@ CODE=THCHMUST04
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
 FIGS= $(CODE)f1.eps $(CODE)f2.eps
 FIGFIGS= $(CODE)f1.fig $(CODE)f2.fig
+PAPER=$(CODE).pdf
+TALK=$(CODE)_talk.pdf
 ARCHIVE=Makefile $(CODE).tex $(CODE).ps $(STYLES) $(FIGFIGS) $(FIGS)
 .PRECIOUS: $(CODE).ps $(FIGS)
 
-default: $(CODE).pdf view
+default: $(PAPER) $(TALK) view_talk
 all: clean default zip
 
 $(CODE).dvi: $(FIGS) $(CODE).tex
@@ -26,4 +28,6 @@ clean:
 zip:
 	zip $(CODE)_`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:
-	acroread $(CODE).pdf &
+	acroread $(PAPER) &
+view_talk:
+	acroread $(TALK) &

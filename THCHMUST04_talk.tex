@@ -8,15 +8,56 @@
 	Integration of Drivers in The Linux Kernel}
 \author{%
 	Juan David Gonz\'alez Cobas, Samuel Iglesias Gons\'alvez,\\
-	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
+	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\
 	Emilio G. Cota (Columbia University, NY; formerly at CERN), \\
 	Alessandro Rubini, Federico Vaga (University of Pavia)}
 \date{ICALEPCS'2011}
 
 \begin{document}
+
+
 \begin{frame}
 \titlepage
 \end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\begin{frame}{CERN Controls System Front End Computers (FECs)}
+
+The controls system relies on FECs on several form factors/buses,
+most of them based on Single-Board Computers (SBCs)
+
+\begin{itemize}
+\item Number of FECs: 1140
+\item Number of VME crates: 710
+\end{itemize}
+
+For the VME crates, the ongoing renovation process gives
+\begin{itemize}
+\item CES RIO2/RIO3 SBCs with PowerPC CPUs runing
+LynxOS (around 605 crates by August 2011), to
+\item MEN-A20 SBCs with Intel CPUs running real-time
+Linux (around 105 by August 2011).
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{MEN A20 and the TSI148 chip and driver}
+
+The MEN A20 SBC is an Intel Core 2 Duo-based board interfacing to the
+VME bus via a Tundra TSI148 PCI-X to VME bridge chip.
+
+% wget http://www.men.de/docs-ext/products/images/img_photo/01a020-_hi.jpg
+% ftp://ftp.ruby-lang.org/pub/ruby/1.8/ruby-1.8.7-p352.tar.gz
+\begin{center}
+\includegraphics[height=4cm]{01a020-_hi.pdf} \qquad
+\includegraphics[height=2.75cm]{p_tundra_Tsi148-HR.pdf}
+\end{center}
+\end{frame}
+
+
 \section*{Outline}
 \begin{frame}
 \tableofcontents
@@ -47,7 +88,7 @@
     INTEGRATION OF DRIVERS IN THE LINUX KERNEL}
 \author{%
 	Juan David Gonz\'alez Cobas, Samuel Iglesias Gons\'alvez,\\
-	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
+	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\
 	Emilio G. Cota (Columbia University, NY; formerly at CERN), \\
 	Alessandro Rubini, Federico Vaga (University of Pavia)}
 

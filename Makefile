@@ -31,7 +31,7 @@ $(TALK): $(CODE)_talk.tex $(TALKFIGS)
 	pdflatex $* && pdflatex $*
 
 clean:
-	rm -rf *.aux *.dvi *.log *.bak $(FIGS)
+	rm -rf *.aux *.dvi *.log *.bak $(FIGS) *.nav *.out *.snm *.toc
 zip:
 	zip $(CODE)_`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:

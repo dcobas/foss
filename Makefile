@@ -1,4 +1,4 @@
-.SUFFIXES:	.fig .eps .tex .dvi .ps .pdf
+.SUFFIXES:	.fig .jpg .eps .tex .dvi .ps .pdf
 
 CODE=THCHMUST04
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
@@ -22,10 +22,15 @@ $(CODE).dvi: $(FIGS) $(CODE).tex
 	dvips -o $@ $^
 .fig.eps:
 	fig2dev -L eps $^ $@
+.jpg.eps:
+	jpegtopnm $^ | pnmtops -noturn -nocenter > $@
+.gif.eps:
+	giftopnm $^ | pnmtops -noturn -nocenter > $@
 .eps.pdf:
 	epstopdf $^
 .ps.pdf:
 	ps2pdf $^ $@
+
 
 $(TALK): $(CODE)_talk.tex $(TALKFIGS)
 	pdflatex $* && pdflatex $*

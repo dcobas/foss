@@ -9,7 +9,7 @@ FIGS= $(CODE)f1.fig $(CODE)f2.fig $(CODE)f2_talk.fig block_diagram.dia
 RASTERS=p_tundra_Tsi148-HR.gif 01a020-_hi.jpg fmcadc.jpg spec.jpg
 PAPER=$(CODE).pdf
 TALK=$(CODE)_talk.pdf
-ARCHIVE=Makefile $(CODE).tex $(CODE)_talk.tex $(CODE).ps $(STYLES) $(FIGS)
+ARCHIVE=Makefile $(CODE).tex $(CODE)_talk.tex $(CODE).ps $(STYLES) $(FIGS) $(RASTERS)
 
 .PRECIOUS: $(CODE).ps $(PAPERFIGS)
 

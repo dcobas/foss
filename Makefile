@@ -1,7 +1,7 @@
 .SUFFIXES:	.fig .gif .jpg .eps .tex .dvi .ps .pdf
 
 CODE=THCHMUST04
-STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
+STYLES=JAC2003.cls
 PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
 TALKFIGS=01a020-_hi.pdf p_tundra_Tsi148-HR.pdf \
 	spec.pdf fmcadc.pdf $(CODE)f1.pdf $(CODE)f2.pdf

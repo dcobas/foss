@@ -1,20 +1,22 @@
-.SUFFIXES:	.fig .jpg .eps .tex .dvi .ps .pdf
+.SUFFIXES:	.fig .gif .jpg .eps .tex .dvi .ps .pdf
 
 CODE=THCHMUST04
 STYLES=JAC2003.cls JACpic2v2.eps JACpic_mc.eps
-FIGS= $(CODE)f1.eps $(CODE)f2.eps
-TALKFIGS=01a020-_hi.pdf p_tundra_Tsi148-HR.pdf
-FIGFIGS= $(CODE)f1.fig $(CODE)f2.fig
+PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
+TALKFIGS=01a020-_hi.pdf p_tundra_Tsi148-HR.pdf \
+	spec.pdf fmcadc.pdf $(CODE)f1.pdf $(CODE)f2.pdf
+FIGS= $(CODE)f1.fig $(CODE)f2.fig
+RASTERS=p_tundra_Tsi148-HR.gif 01a020-_hi.jpg fmcadc.jpg spec.jpg
 PAPER=$(CODE).pdf
 TALK=$(CODE)_talk.pdf
-ARCHIVE=Makefile $(CODE).tex $(CODE).ps $(STYLES) $(FIGFIGS) $(FIGS)
+ARCHIVE=Makefile $(CODE).tex $(CODE)_talk.tex $(CODE).ps $(STYLES) $(FIGS)
 
-.PRECIOUS: $(CODE).ps $(FIGS)
+.PRECIOUS: $(CODE).ps $(PAPERFIGS)
 
 default: $(PAPER) $(TALK) view_talk
 all: clean default zip
 
-$(CODE).dvi: $(FIGS) $(CODE).tex
+$(CODE).dvi: $(PAPERFIGS) $(CODE).tex
 
 .tex.dvi:
 	latex $* && latex $*
@@ -31,12 +33,12 @@ $(CODE).dvi: $(FIGS) $(CODE).tex
 .ps.pdf:
 	ps2pdf $^ $@
 
-
+$(CODE).dvi: $(CODE).tex $(FIGS)
 $(TALK): $(CODE)_talk.tex $(TALKFIGS)
 	pdflatex $* && pdflatex $*
 
 clean:
-	rm -rf *.aux *.dvi *.log *.bak $(FIGS) *.nav *.out *.snm *.toc
+	rm -rf *.aux *.dvi *.log *.bak *.eps *.pdf *.nav *.out *.snm *.toc
 zip:
 	zip $(CODE)_`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:

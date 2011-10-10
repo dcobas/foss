@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usetheme{Copenhagen}
+\usecolortheme[named=brown]{structure}
 
 \title[FOSS at CERN: Drivers in the Kernel]%
 	{Free and Open Source Software at CERN:\\
@@ -19,10 +20,6 @@
 
 \begin{frame}
 \titlepage
-\end{frame}
-
-\begin{frame}
-\tableofcontents
 \end{frame}
 
 \section{The tsi148 bridge}
@@ -79,7 +76,7 @@ To this point, the development is \emph{in-house} and
 \begin{frame}{Why going upstream? (2010)}
 
 By mid-2010, the decision is taken to submit the driver for acceptance
-in the Linux kernel main tree. Why?
+in the Linux kernel main tree. Motivation:
 
 \begin{itemize}
 \item Smoother maintenance in the (frequent) event of kernel API
@@ -92,15 +89,12 @@ in the Linux kernel main tree. Why?
 \item Contributing back in return to the many benefits the FOSS community
     gives us.
 \end{itemize}
-
-The original motivations were less practical than ideological.
-
-\emph{But we were wrong}
+The original motivations were \emph{less practical than ideological}
 \end{frame}
 
 \begin{frame}{Stages in the process}
 
-We went the merge way with the pre-existing \texttt{./staging/}
+We underwent the merge with the pre-existing \texttt{./staging/}
 driver for the Tundra Universe and TSI148 chips,
 maintained by Martyn Welch (GE).
 
@@ -130,11 +124,19 @@ maintained by Martyn Welch (GE).
 \item Having a good history of prior contributions gives respectability
     in that meritocratic culture.
 \end{itemize}
+\end{frame}
 
-But the most important one was that our reasons turned out to be wrong.
+\begin{frame}{Lessons learned}
+But the most important one was that our initial motivations
+\emph{turned out to be wrong}
+
+\begin{center}
+\Huge Why?
+\end{center}
 \end{frame}
 
 \section{FMC boards}
+
 \begin{frame}{The FMC family of boards}
 
 This is a substantial part of our standard HW kit, currently under
@@ -149,17 +151,18 @@ development\\
 \item \emph{logic is organized as a set of cores interconnected through a
     Wishbone bus}
 \end{itemize}
-
 \end{frame}
 
-\begin{frame}{A typical scenario}
-
-[photo of SPEC + ADC,]
-
+\begin{frame}{A typical application: carrier}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{spec.pdf}
+\end{center}
 \end{frame}
 
-\begin{frame}{What's inside the FPGA}
-\includegraphics[height=0.8\textheight]{block_diagram_talk.pdf}
+\begin{frame}{A typical application: mezzanine}
+\begin{center}
+\includegraphics[rotate=180,width=0.8\textwidth]{fmcadc.pdf}
+\end{center}
 \end{frame}
 
 \begin{frame}{What's inside the FPGA}
@@ -184,8 +187,8 @@ development\\
 	SIS3300         &  Analog input  & 8ch    & 12/14b & 100MS/s     & VME  \\
 	SIS3302         &  Analog input  & 8ch    & 16b    & 100MS/s     & VME  \\
 	SIS3320         &  Analog input  & 8ch    & 12b    & 250MS/s     & VME  \\
-	``Fast'' FMC ADC&  Analog input  & 4ch    & 14b    & 100Ms/s     & VME/PCIe (Wishbone)  \\
-	``Slow'' FMC ADC&  Analog input  & 8ch    & 16b    & 100kS/s     & VME/PCIe (Wishbone)  \\
+	``Fast'' FMC ADC&  Analog input  & 4ch    & 14b    & 100Ms/s	 & VME/PCIe (WB)  \\
+	``Slow'' FMC ADC&  Analog input  & 8ch    & 16b    & 100kS/s     & VME/PCIe (WB)  \\
        \midrule
 	CVORB V4        &  Analog output & 16ch   &  16b   &  5us/sample & VME 	 \\
 	VMOD-12A2/4     &  Analog output & 2ch    &  12b   &  10us/sample& VME/PCI \\
@@ -222,12 +225,11 @@ codename~\texttt{zio}.
 \begin{frame}{\texttt{zio} features}
 
 The aspects that the \texttt{zio} framework intends to cover are
-manifold:
+manifold
 \begin{itemize}
 \item Digital and analog input and output.
 \item One-shot and streaming (buffered) data acquisition or waveform play.
-\item Resolution.
-\item Sampling rate.
+\item Resolution and sampling rate.
 \item Buffer management and timing for streaming conversion.
 \item Support for DMA.
 \item Calibration, offset and gain.
@@ -236,7 +238,6 @@ manifold:
 \item Triggering of acquisition/output.
 \item Clean design conforming to Linux kernel practice.
 \end{itemize}
-
 \end{frame}
 
 \begin{frame}{Why did we do it?}

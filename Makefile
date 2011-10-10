@@ -5,7 +5,7 @@ STYLES=JAC2003.cls
 PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
 TALKFIGS=01a020-_hi.pdf p_tundra_Tsi148-HR.pdf \
 	spec.pdf fmcadc.pdf $(CODE)f1.pdf $(CODE)f2_talk.pdf
-FIGS= $(CODE)f1.fig $(CODE)f2.fig block_diagram.dia
+FIGS= $(CODE)f1.fig $(CODE)f2.fig $(CODE)f2_talk.fig block_diagram.dia
 RASTERS=p_tundra_Tsi148-HR.gif 01a020-_hi.jpg fmcadc.jpg spec.jpg
 PAPER=$(CODE).pdf
 TALK=$(CODE)_talk.pdf

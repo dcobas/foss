@@ -28,6 +28,8 @@ $(CODE).dvi: $(PAPERFIGS) $(CODE).tex
 	jpegtopnm $^ | pnmtops -noturn -nocenter > $@
 .gif.eps:
 	giftopnm $^ | pnmtops -noturn -nocenter > $@
+.dia.eps:
+	dia -t eps $^
 .eps.pdf:
 	epstopdf $^
 .ps.pdf:

@@ -44,7 +44,7 @@ most of them based on Single-Board Computers (SBCs)
 
 For the VME crates, the ongoing renovation process gives
 \begin{itemize}
-\item CES RIO2/RIO3 SBCs with PowerPC CPUs runing
+\item CES RIO2/RIO3 SBCs with PowerPC CPUs running
 LynxOS (around 605 crates by August 2011), to
 \item MEN-A20 SBCs with Intel CPUs running real-time
 Linux (around 105 by August 2011).
@@ -195,32 +195,6 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 
 \section{The \texttt{zio} framework}
 
-\begin{frame}{BE/CO data acquisition modules}
-   \begin{tiny}
-   \begin{tabular}{llllll}
-       \toprule
-	\textbf{Module}& \textbf{Type}& \textbf{Channels}&
-	\textbf{Resolution}& \textbf{Max. Speed}& \textbf{Bus} \\
-       \midrule
-	VMOD-12E8/16    &  Analog input  & 8/16ch & 12b    & 15us/sample & VME/PCI  \\
-	VD80            &  Analog input  & 16ch   & 16b    & 200kS/s     & VME  \\
-	SIS3300         &  Analog input  & 8ch    & 12/14b & 100MS/s     & VME  \\
-	SIS3302         &  Analog input  & 8ch    & 16b    & 100MS/s     & VME  \\
-	SIS3320         &  Analog input  & 8ch    & 12b    & 250MS/s     & VME  \\
-	``Fast'' FMC ADC&  Analog input  & 4ch    & 14b    & 100Ms/s	 & VME/PCIe (WB)  \\
-	``Slow'' FMC ADC&  Analog input  & 8ch    & 16b    & 100kS/s     & VME/PCIe (WB)  \\
-       \midrule
-	CVORB V4        &  Analog output & 16ch   &  16b   &  5us/sample & VME 	 \\
-	VMOD-12A2/4     &  Analog output & 2ch    &  12b   &  10us/sample& VME/PCI \\
-	CVORG           &  Analog output & 2ch    &  14b   &  100 MS/s   & VME  \\
-       \midrule
-	VMOD-TTL        &  Digital I/O   & 20ch   & 1b     & n/a         & VME/PCI \\
-	CVORA           &  Digital I/O   & 32ch   & 1--32b & 100Mhz	 & VME \\
-       \bottomrule
-   \end{tabular}
-   \end{tiny}
-\end{frame}
-
 \begin{frame}{Industrial I/O frameworks}
 
 \pause
@@ -242,10 +216,10 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \pause
 \begin{block}{Then \texttt{zio} comes}
 \begin{itemize}
-\item Alessandro Rubini and Federico Vara, main developers
+\item Alessandro Rubini and Federico Vaga, main developers
 \item Integration mainstream \emph{ab initio}
 \item See (soon) under \url{http://www.ohwr.org/}
-\pause\item \textcolor{red}{Clean design conforming to Linux kernel practice}
+\item \textcolor{red}{Clean design conforming to Linux kernel practice}
 \end{itemize}
 \end{block}
 

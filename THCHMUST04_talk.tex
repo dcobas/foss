@@ -1,10 +1,17 @@
 \documentclass[compress,red]{beamer}
-\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme[subsection=false]{smoothbars}
+
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \usepackage{url}
-\usetheme{Copenhagen}
-\useoutertheme[subsection=false]{smoothbars}
+
+\usepackage{remreset}% tiny package containing just the \@removefromreset command
+\makeatletter
+\@removefromreset{subsection}{section}
+\makeatother
+\setcounter{subsection}{1}
 
 \title[FOSS at CERN: Drivers in the Kernel]%
 	{Free and Open Source Software at CERN:\\
@@ -61,15 +68,15 @@ VME bus via a Tundra TSI148 PCI-X to VME bridge chip.
 
 Some data about our driver for the \texttt{tsi148} PCI-X to VME bridge.
 \begin{itemize}
-\item<1-> Developed at CERN in spring 2009 (S\'ebastien Dugu\'e)
-\item<2-> Maintained and extended by Emilio G. Cota during 2010
-\item<3-> Currently maintained by Manohar Vanga (see below)
-\item<4-> API via exported symbols (kernel) and old-style \texttt{ioctl()} (user) interface.
-\item<5-> Backward compatible at the API level with the original LynxOS CES
+\pause\item Developed at CERN in spring 2009 (S\'ebastien Dugu\'e)
+\pause\item Maintained and extended by Emilio G. Cota during 2010
+\pause\item Currently maintained by Manohar Vanga (see below)
+\pause\item API via exported symbols (kernel) and old-style \texttt{ioctl()} (user) interface.
+\pause\item Backward compatible at the API level with the original LynxOS CES
     library (well, almost) and offering a newer API as well
 \end{itemize}
 
-\onslide<6-> Beginning as an \textcolor{red}{in-house}
+\pause Beginning as an \textcolor{red}{in-house}
 and \textcolor{red}{CERN-centric} development
 \end{frame}
 
@@ -185,7 +192,7 @@ The main concepts for the design of these drivers are
 \pause
 \item modular structure that reflects the core structure of the firmware
 \pause
-\item one-to-one mapping driver $leftrightarrow$ core (usually)
+\item one-to-one mapping driver $\leftrightarrow$ core (usually)
 \pause
 \item wishbone-centricity
 \pause
@@ -198,7 +205,7 @@ loader and a Wishbone bus driver (with device enumeration
 
 \pause
 It will be (we hope) the first Wishbone bus driver in the mainstream
-kernel $Rightarrow$ will to go upstream, timeliness
+kernel $\Rightarrow$ will to go upstream, timeliness
 \end{frame}
 
 \section{The \texttt{zio} framework}
@@ -288,6 +295,8 @@ CERN-developed drivers for
 \item timing receivers, White Rabbit, etc.
 \end{itemize}
 \end{frame}
+
+\section{Conclusions}
 
 \begin{frame}{Why did we do it?}
 

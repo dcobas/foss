@@ -86,13 +86,12 @@ By mid-2010, the decision is taken to submit the driver for acceptance
 in the Linux kernel main tree. Motivation:
 
 \begin{itemize}
-\item Smoother maintenance in the (frequent) event of kernel API
-  changes\\
+\item Smoother maintenance in the (frequent) case of\\
+	kernel API changes\\
   (see \texttt{Documentation/stable\_api\_nonsense.txt} in the kernel
   tree).
 \item Widespread distribution of the code base, which can then be
-    enhanced and get contributions by researchers working on similar
-    problems.
+    enhanced and get contributed by researchers
 \item Contributing back in return to the many benefits the FOSS community
     gives us.
 \end{itemize}
@@ -201,7 +200,7 @@ The main concepts for the design of these drivers are
 \pause
 On the whole, the driver for the carrier board acts as a basic firmware
 loader and a Wishbone bus driver (with device enumeration
-\emph{\`a la PCI}
+\emph{\`a la PCI)}
 
 \pause
 It will be (we hope) the first Wishbone bus driver in the mainstream
@@ -259,8 +258,8 @@ Careful analysis shows that
 A generic, modern framework to tackle these heterogeneous device drivers
 is under development by Alessandro Rubini and Federico Vaga, under the
 codename~\texttt{zio}. It is also intended for integration in the
-mainstream kernel. See
-\url{git://gnudd.com/zio-beta.git}
+mainstream kernel.\\
+See (soon) under \url{http://www.ohwr.org/}
 \end{frame}
 
 \begin{frame}{\texttt{zio} features}
@@ -269,7 +268,7 @@ The aspects that the \texttt{zio} framework intends to cover are
 manifold
 \begin{itemize} \small
 \pause\item Digital and analog input and output.
-\pause\item One-shot and streaming (buffered) data acquisition or waveform play.
+\pause\item One-shot and streaming (buffered) data transfer.
 \pause\item Resolution and sampling rate.
 \pause\item Buffer management and timing for streaming conversion.
 \pause\item Support for DMA.
@@ -303,8 +302,8 @@ CERN-developed drivers for
 It gave us much more than we thought in the first place
 \begin{itemize}
 \pause
-\item Smoother maintenance in the (frequent) event of kernel API
-  changes.
+\item Smoother maintenance in the (frequent) case of\\
+	kernel API changes.
 \item Widespread distribution of the code base.
 \item Contributing back to the the FOSS community.
 \pause \color{red}

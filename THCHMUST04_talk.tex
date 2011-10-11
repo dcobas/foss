@@ -2,6 +2,7 @@
 \usetheme{Warsaw}
 \useoutertheme[subsection=false]{smoothbars}
 
+\usepackage{helvet}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{hyperref}
@@ -95,51 +96,39 @@ in the Linux kernel main tree. Motivation:
 \item Contributing back in return to the many benefits the FOSS community
     gives us.
 \end{itemize}
-The original motivations were \textcolor{red}{less practical than ideological}
+The original motivations were \textcolor{red}{more ideological than
+practical}
 \end{frame}
 
-\begin{frame}{Stages in the process}
+\begin{frame}{How the driver was merged (2010--2011)}
 
-We underwent the merge with the pre-existing \texttt{./staging/}
-driver for the Tundra Universe and TSI148 chips,
-maintained by Martyn Welch (GE).
-
-\begin{description}
 \pause
-\item[nov 2010] First submission of patches by Emilio G. Cota.
-    Modification of the device model implementation. Partially accepted,
-    bus/driver issues not accepted.
-\pause
-\item[march 2011] Second attempt to push patches by Manohar Vanga.
-    Most stylistic modifications accepted. Device model modifications
-    controversial. Scheduled a second round.
-\pause
-\item[mid 2011] Re-submission of the corrected patch set. Core
-    modifications to the device model accepted.
-\end{description}
-\end{frame}
-
-\begin{frame}{Lessons learned}
+\begin{block}{Who, when, how}
 \begin{itemize}
-\item It is hard, frustrating at times. One should be ready for the
-    peculiar culture of the Linux Kernel Mailing List.
-\item Maintainers are occasionally hard to deal with.
-\item One must be prepared to compromise.
-\item Design, APIs and development must be adapted to comply with the strict
-    standards imposed by the Linux kernel developers.
-\item The review process may be long, with several iterations.
-\item Having a good history of prior contributions gives respectability
-    in that meritocratic culture.
-\item Small, incremental changes are more likely to be accepted than
-    big, hard-to-digest ones.
+\item Merge process with pre-existing \texttt{./staging/}
+driver for the Tundra Universe and TSI148 chips
+\item Four-round process (Emilio G. Cota, Manohar Vanga)
+\item Core device model modifications accepted by mid 2011
 \end{itemize}
+\end{block}
+
+\pause
+\begin{block}{Lessons learned}
+\begin{itemize}
+\item It is hard, LKML and maintainers are tough
+\item One must be prepared to compromise (design, APIs, tools)
+\item One must build a reputation slowly
+\item Requires \textcolor{red}{patience}
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}{Lessons learned}
 But the most important one was that our initial motivations
 \pause
+\begin{center}
 \textcolor{red}{turned out to be wrong}
-
+\end{center}
 \pause
 \begin{center}
 \Huge Why?
@@ -147,23 +136,6 @@ But the most important one was that our initial motivations
 \end{frame}
 
 \section{FMC boards}
-
-\begin{frame}{The FMC family of boards}
-
-This is a substantial part of our standard HW kit, currently under
-development\\
-(see \url{http://www.ohwr.org/projects/fmc-projects}).
-
-\begin{itemize}
-\item carriers in PCIe and VME format
-\item simple mezzanines with electronics for ADCs, DACs, DIO and endless
-    other applications
-\item circuitry in the mezzanine
-\item FPGA application logic in the carrier
-\item \emph{logic in the FPGA is organized as a set of cores
-    interconnected through a Wishbone bus}
-\end{itemize}
-\end{frame}
 
 \begin{frame}{A typical data acquisition application: carrier}
 \begin{center}
@@ -177,8 +149,22 @@ development\\
 \end{center}
 \end{frame}
 
-\begin{frame}{What's inside the FPGA}
-\includegraphics[height=0.8\textheight]{THCHMUST04f2_talk.pdf}
+\begin{frame}{The FMC family of boards}
+
+This is a substantial part of our standard HW kit, currently under
+development\\
+(see \url{http://www.ohwr.org/projects/fmc-projects}).
+
+\begin{itemize}
+\item carriers in PCIe and VME format
+\item simple mezzanines with electronics for ADCs, DACs, DIO and endless
+    other applications
+\item circuitry in the mezzanine
+\item FPGA application logic in the carrier
+\item \emph{logic in the FPGA is organized as a set of IP cores
+    interconnected through an internal bus named
+    \textcolor{red}{Wishbone}}
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Architecture of the FMC drivers}
@@ -193,14 +179,14 @@ The main concepts for the design of these drivers are
 \pause
 \item one-to-one mapping driver $\leftrightarrow$ core (usually)
 \pause
-\item wishbone-centricity
-\pause
 \item ability to dynamically load bitstreams by application
 \end{itemize}
+
 \pause
 On the whole, the driver for the carrier board acts as a basic firmware
-loader and a Wishbone bus driver (with device enumeration
-\emph{\`a la PCI)}
+loader and a bridge driver (with device enumeration
+\emph{\`a la PCI)} between the host bus (PCIe, VME) and the FPGA
+interconnection bus
 
 \pause
 It will be (we hope) the first Wishbone bus driver in the mainstream
@@ -237,50 +223,35 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 
 \begin{frame}{Industrial I/O frameworks}
 
-There are two main frameworks in the Linux (staging) kernel for
-industrial data acquisition applications
 \pause
+\begin{block}{In Linux staging area}
 \begin{itemize}
 \item Comedi
 \item IIO
 \end{itemize}
+\end{block}
 
 \pause
-Careful analysis shows that
+\begin{block}{Drawbacks}
 \begin{itemize}
-\pause
-\item our requirements are not suited by them
-\pause
-\item the interfaces offered can be cumbersome
+\item do not suit our needs
+\item interfaces are cumbersome
 \end{itemize}
+\end{block}
 
 \pause
-A generic, modern framework to tackle these heterogeneous device drivers
-is under development by Alessandro Rubini and Federico Vaga, under the
-codename~\texttt{zio}. It is also intended for integration in the
-mainstream kernel.\\
-See (soon) under \url{http://www.ohwr.org/}
-\end{frame}
-
-\begin{frame}{\texttt{zio} features}
-
-The aspects that the \texttt{zio} framework intends to cover are
-manifold
-\begin{itemize} \small
-\pause\item Digital and analog input and output.
-\pause\item One-shot and streaming (buffered) data transfer.
-\pause\item Resolution and sampling rate.
-\pause\item Buffer management and timing for streaming conversion.
-\pause\item Support for DMA.
-\pause\item Calibration, offset and gain.
-\pause\item Bit grouping in digital I/O.
-\pause\item Timestamping.
-\pause\item Triggering of acquisition/output.
+\begin{block}{Then \texttt{zio} comes}
+\begin{itemize}
+\item Alessandro Rubini and Federico Vara, main developers
+\item Integration mainstream \emph{ab initio}
+\item See (soon) under \url{http://www.ohwr.org/}
 \pause\item \textcolor{red}{Clean design conforming to Linux kernel practice}
 \end{itemize}
+\end{block}
+
 \end{frame}
 
-\begin{frame}{Next candidates}
+\begin{frame}{Next candidates for (\texttt{zio}) integration}
 
 CERN-developed drivers for
 \begin{itemize}
@@ -295,7 +266,7 @@ CERN-developed drivers for
 \end{itemize}
 \end{frame}
 
-\section{Conclusions}
+\section{Conclusions and The Ultimate Goal}
 
 \begin{frame}{Why did we do it?}
 
@@ -319,15 +290,6 @@ It gave us much more than we thought in the first place
     experienced programmers, \emph{e.g.} \texttt{git}, \texttt{sparse}
     and \texttt{coccinelle}.
 \end{itemize}
-\end{frame}
-
-\begin{frame}{The ultimate goal}
-    Being able to drive critical hardware components with software
-    in the vanilla kernel, with no local, idiosyncratic modifications
-    is the ultimate goal (or so we believe).
-
-    Some steps are going in that direction now (e.g. CERN BE/CO
-    supported kernel)
 \end{frame}
 
 \end{document}

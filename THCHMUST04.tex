@@ -11,9 +11,9 @@
     INTEGRATION OF DRIVERS IN THE LINUX KERNEL}
 \author{%
 	Juan David Gonz\'alez Cobas, Samuel Iglesias Gons\'alvez,\\
-	Julian Howard Lewis, Javier Serrano, Manohar Vanga (CERN, Geneva),\\ 
-	Emilio G. Cota (Columbia University, NY; formerly at CERN), \\
-	Alessandro Rubini, Federico Vaga (University of Pavia)}
+	Julian Howard Lewis, Javier Serrano, Manohar Vanga, CERN, Geneva\\
+	Emilio G. Cota Columbia University, NY (formerly at CERN)\\
+	Alessandro Rubini, Federico Vaga, University of Pavia}
 
 \begin{document}
 
@@ -174,7 +174,7 @@ if driver code has to remain untouched.
 \begin{figure}[t]
    \centering
    \includegraphics*[width=80mm]{THCHMUST04f1.eps}
-   \caption{Wishbone bus driver architecture}
+   \caption{Wishbone bus driver architecture.}
    \label{wishbone-enum}
 \end{figure}
 
@@ -227,7 +227,7 @@ for Wishbone, plus a PCI-to-Wishbone bridge driver for the carrier board.
 \begin{figure}[t]
    \centering
    \includegraphics*[width=80mm]{THCHMUST04f2.eps}
-   \caption{Block diagram of the FMC slow ADC application}
+   \caption{Block diagram of the FMC slow ADC application.}
    \label{slow-adc}
 \end{figure}
 
@@ -256,7 +256,7 @@ because of the LynxOS coding practice formerly prevalent.
 
 \begin{table*}[ht]
    \centering
-   \caption{BE/CO data acquisition modules}
+   \caption{BE/CO Data Acquisition Modules}
    \begin{tabular}{llllll}
        \toprule
 	\textbf{Module}& \textbf{Type}& \textbf{Channels}&
@@ -383,11 +383,10 @@ in ICALEPCS'09, p. 376, 2009.
 VME International Trade Association,
 ``FPGA Mezzanine Card (FMC) Standard'', \url{http://www.vita.com/}
 
-\bibitem{wishbone-spec}
-OpenCORES,
-``Wishbone B4: WISHBONE System-on\-{}{}Chip (SoC) Interconnection
-Architecture for Portable~IP Cores'', see\\
-\url{http://opencores.org/opencores,wishbone}
+\bibitem{stable-api-nonsense}
+G. Kroah-Hartman, ``The Linux Kernel Driver Interface'', see Linux
+sources under\\
+\texttt{Documentation/stable\_api\_nonsense.txt.}
 
 \bibitem{git}
 L. Torvalds. ``git: The Fast Version Control System'', see\\
@@ -403,19 +402,6 @@ J.L. Lawall, J. Brunel, N. Palix, R.R. Hansen, H. Stuart, G. Muller,
 Linux code,'', in The 39th Annual IEEE/IFIP International Conference on
 Dependable Systems and Networks, pp. 43-52, 2009.
 
-\bibitem{device-model}
-``Linux Kernel Device Model'', see\\
-\texttt{linux-src/Documentation/driver-model/.}
-
-\bibitem{stable-api-nonsense}
-G. Kroah-Hartman, ``The Linux Kernel Driver Interface'', see Linux
-sources under\\
-\texttt{Documentation/stable\_api\_nonsense.txt.}
-
-\bibitem{linux-rt}
-S. Rostedt and D.V. Hart, ``Internals of the RT patch''. In Linux
-Symposium, 2007.
-
 \bibitem{submitting-patches}
 ``Submitting Patches'', see\\
 \texttt{linux-src/Documentation/SubmittingPatches.}
@@ -424,6 +410,20 @@ Symposium, 2007.
 G. Kroah-Hartman, ``linux-staging tree created'', announcement on the
 Linux Kernel Mailing List, June 2010.
 See \url{https://lkml.org/lkml/2008/6/10/329}
+
+\bibitem{wishbone-spec}
+OpenCORES,
+``Wishbone B4: WISHBONE System-on\-{}{}Chip (SoC) Interconnection
+Architecture for Portable~IP Cores'', see\\
+\url{http://opencores.org/opencores,wishbone}
+
+\bibitem{device-model}
+``Linux Kernel Device Model'', see\\
+\texttt{linux-src/Documentation/driver-model/.}
+
+\bibitem{linux-rt}
+S. Rostedt and D.V. Hart, ``Internals of the RT patch''. In Linux
+Symposium, 2007.
 
 \bibitem{rubini}
 J. Corbet, A. Rubini, G. Kroah-Hartman, ``Linux Device Drivers'', 3rd

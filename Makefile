@@ -1,19 +1,19 @@
 .SUFFIXES:	.fig .gif .jpg .eps .tex .dvi .ps .pdf
 
-CODE=THCHMUST04
+CODE=pp
 STYLES=JAC2003.cls
 PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
-TALKFIGS=01a020-_hi.pdf p_tundra_Tsi148-HR.pdf \
-	spec.pdf fmcadc.pdf $(CODE)f1.pdf $(CODE)f2_talk.pdf
-FIGS= $(CODE)f1.fig $(CODE)f2.fig $(CODE)f2_talk.fig block_diagram.dia
+TALKFIGS= driverarch.pdf adcarch.pdf spec.pdf fmcadc.pdf
+FIGS= $(CODE)f1.fig $(CODE)f2.fig $(CODE)f2_talk.fig block_diagram.dia \
+	driverarch.fig adcarch.fig spec.fig fmcadc.fig
 RASTERS=p_tundra_Tsi148-HR.gif 01a020-_hi.jpg fmcadc.jpg spec.jpg
 PAPER=$(CODE).pdf
-TALK=$(CODE)_talk.pdf
-ARCHIVE=Makefile $(CODE).tex $(CODE)_talk.tex $(CODE).ps $(STYLES) $(FIGS) $(RASTERS)
+TALK=$(CODE).pdf
+ARCHIVE=Makefile $(CODE).tex $(CODE).ps $(STYLES) $(FIGS) $(RASTERS)
 
 .PRECIOUS: $(CODE).ps $(PAPERFIGS)
 
-default: $(PAPER) $(TALK) view_talk
+default: $(TALK) view_talk
 all: clean default zip
 
 $(CODE).dvi: $(PAPERFIGS) $(CODE).tex
@@ -36,7 +36,7 @@ $(CODE).dvi: $(PAPERFIGS) $(CODE).tex
 	ps2pdf $^ $@
 
 $(CODE).dvi: $(CODE).tex $(FIGS)
-$(TALK): $(CODE)_talk.tex $(TALKFIGS)
+$(TALK): $(CODE).tex $(TALKFIGS)
 	pdflatex $* && pdflatex $*
 
 clean:

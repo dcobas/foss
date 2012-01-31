@@ -29,41 +29,68 @@
 \end{frame}
 
 % ------------------------------------------------------
-\begin{frame}{The FMC family of boards}
+\begin{frame}
+\frametitle{Software for Diverse Equipment}
 
+We got ourselves a rather diverse hardware ecosyst...
+\pause eeehh, sorry, \pause zoo
+\pause
+\begin{block}{Different species of hardware animals...}
 \begin{itemize}
-\item carriers in PCIe and VME format
+\pause\item analog I/O (ADCs, DACs, waveform generators)
+\pause\item digital I/O
+\pause\item timing boards (FD, TDC)
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{...of diverse breed}
+\begin{itemize}
+\pause\item legacy stuff
+\pause\item FMC boards
+\end{itemize}
+\end{block}
+
+\pause Some order has to be imposed in the zoo.
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}
+\frametitle{Unifying Themes}
+\begin{block}{Wishbone-based drivers}
+\begin{itemize}
+\item covering the FMC family of boards
+\item designed around the internal Wishbone bus
+\item depending on enumeration of device cores
+\end{itemize}
+\end{block}
+\begin{block}{\texttt{zio}: The Ultimate I/O}
+\begin{itemize}
+\item Linux kernel framework for I/O devices
+\item oriented to high bandwidth applications
+\end{itemize}
+\end{block}
+
+
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}{The FMC family of boards}
+\begin{itemize}
+\item carriers in PCIe and VME form factors
 \item simple mezzanines with electronics for ADCs, DACs, DIO and endless
     other applications
 \item circuitry in the mezzanine
 \item FPGA application logic in the carrier
 \item \emph{logic in the FPGA is organized as a set of IP cores
-    interconnected through an internal bus named
-    \textcolor{red}{Wishbone}}
+    interconnected through an internal \textcolor{red}{Wishbone}}
+    bus
 \end{itemize}
 \end{frame}
-
 % ------------------------------------------------------
-\begin{frame}
-\begin{figure}[t]
-   \centering
-   \includegraphics[width=80mm]{adcarch.pdf}
-   \caption{Block diagram of the FMC slow ADC application.}
-   \label{slow-adc}
-\end{figure}
-\end{frame}
-
 % ------------------------------------------------------
-\begin{frame}
-\begin{itemize}
-\item Basic I${}^2$C interfacing to the mezzanine board.
-\item Wishbone mastering.
-\item DMA access to DDR3 memory in the carrier board.
-\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
-\item Interrupt control.
-\end{itemize}
-\end{frame}
-
+% ------------------------------------------------------
+% ------------------------------------------------------
+% ------------------------------------------------------
 % ------------------------------------------------------
 \begin{frame}{Drivers for the FMC family}
 The main concepts for the design of these drivers are
@@ -124,6 +151,27 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \end{center}
 \end{frame}
 
+% ------------------------------------------------------
+\begin{frame}
+\begin{figure}[t]
+   \centering
+   \includegraphics[width=80mm]{adcarch.pdf}
+   \caption{Block diagram of the FMC slow ADC application.}
+   \label{slow-adc}
+\end{figure}
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}{Parts of the whole}
+\begin{itemize}
+\item Basic I${}^2$C interfacing to the mezzanine board.
+\item Wishbone mastering.
+\item DMA access to DDR3 memory in the carrier board.
+\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
+\item Interrupt control.
+\end{itemize}
+\end{frame}
+
 
 \section{The \texttt{zio} framework}
 
@@ -150,9 +198,8 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \begin{block}{Then \texttt{zio} comes}
 \begin{itemize}
 \item Alessandro Rubini and Federico Vaga, main developers
-\item Integration mainstream \emph{ab initio}
-\item See (soon) under \url{http://www.ohwr.org/}
-\item \textcolor{red}{Clean design conforming to Linux kernel practice}
+\item Designed \emph{ab initio} for upstream integration
+\item See under \url{http://www.ohwr.org/projects/zio}
 \end{itemize}
 \end{block}
 

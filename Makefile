@@ -1,6 +1,6 @@
 .SUFFIXES:	.fig .gif .jpg .eps .tex .dvi .ps .pdf
 
-CODE=pp
+CODE=CERN_OH
 STYLES=JAC2003.cls
 PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
 TALKFIGS= driverarch.pdf adcarch.pdf spec.pdf fmcadc.pdf

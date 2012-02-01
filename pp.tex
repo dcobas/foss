@@ -87,10 +87,45 @@ We got ourselves a rather diverse hardware ecosyst...
 \end{itemize}
 \end{frame}
 % ------------------------------------------------------
+\begin{frame}{A typical data acquisition application: carrier}
+\begin{center}
+\includegraphics[height=0.6\textheight]{spec.pdf}
+\end{center}
+\centering
+SPEC carrier board (\url{http://www.ohwr.org/projects/spec})
+\end{frame}
+
 % ------------------------------------------------------
+\begin{frame}{A typical data acquisition application: mezzanine}
+\begin{center}
+\includegraphics[rotate=180,height=0.7\textheight]{fmcadc.pdf}
+\end{center}
+\centering
+FMA 100M4ch14b ADC
+(\url{http://www.ohwr.org/projects/fmc-adc-100m14b4cha})
+\end{frame}
+
 % ------------------------------------------------------
+\begin{frame}
+\begin{figure}[t]
+   \centering
+   \includegraphics[width=80mm]{adcarch.pdf}
+   \caption{Block diagram of the FMC slow ADC application.}
+   \label{slow-adc}
+\end{figure}
+\end{frame}
+
 % ------------------------------------------------------
-% ------------------------------------------------------
+\begin{frame}{Parts of the whole}
+\begin{itemize}
+\item Basic I${}^2$C interfacing to the mezzanine board.
+\item Wishbone mastering.
+\item DMA access to DDR3 memory in the carrier board.
+\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
+\item Interrupt control.
+\end{itemize}
+\end{frame}
+
 % ------------------------------------------------------
 \begin{frame}{Drivers for the FMC family}
 The main concepts for the design of these drivers are
@@ -137,41 +172,6 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 
 \section{FMC boards}
 
-% ------------------------------------------------------
-\begin{frame}{A typical data acquisition application: carrier}
-\begin{center}
-\includegraphics[height=0.8\textheight]{spec.pdf}
-\end{center}
-\end{frame}
-
-% ------------------------------------------------------
-\begin{frame}{A typical data acquisition application: mezzanine}
-\begin{center}
-\includegraphics[rotate=180,height=0.7\textheight]{fmcadc.pdf}
-\end{center}
-\end{frame}
-
-% ------------------------------------------------------
-\begin{frame}
-\begin{figure}[t]
-   \centering
-   \includegraphics[width=80mm]{adcarch.pdf}
-   \caption{Block diagram of the FMC slow ADC application.}
-   \label{slow-adc}
-\end{figure}
-\end{frame}
-
-% ------------------------------------------------------
-\begin{frame}{Parts of the whole}
-\begin{itemize}
-\item Basic I${}^2$C interfacing to the mezzanine board.
-\item Wishbone mastering.
-\item DMA access to DDR3 memory in the carrier board.
-\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
-\item Interrupt control.
-\end{itemize}
-\end{frame}
-
 
 \section{The \texttt{zio} framework}
 
@@ -206,9 +206,64 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \end{frame}
 
 % ------------------------------------------------------
+
+% ------------------------------------------------------
+\begin{frame}
+\frametitle{\texttt{zio} features}
+
+The \texttt{zio} framework is designed to flexibly support the following
+aspects:
+\begin{itemize}
+\item Digital and analog input and output.
+\item One-shot and streaming (buffered) data acquisition or waveform play.
+\item Resolution.
+\item Sampling rate.
+\item Buffer management and timing for streaming conversion.
+\item Support for DMA.
+\item Calibration, offset and gain.
+\item Bit grouping in digital I/O.
+\item Timestamping.
+\item Triggering of acquisition/output.
+\item Potential to integrate in the main tree.
+\end{itemize}
+
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}
+\frametitle{\texttt{zio} concepts}
+
+\begin{block}{\texttt{zio} abstractions}
+\begin{itemize}
+\item[devices] victims of our device drivers, contain channels
+\item[channels] basic I/O units
+\item[channel sets] group channels to be triggered (acquire, output)
+	simultaneously
+\item[buffers] for input and output buffering, of course
+\item[triggers] cause acquisitions to occur
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}
+\frametitle{Typical \texttt{zio} input data flow}
+\includegraphics[height=0.8\textheight]{flow-temp-in.pdf}
+\end{frame}
+
+% ------------------------------------------------------
+\begin{frame}
+\frametitle{Typical \texttt{zio} output data flow}
+\includegraphics[height=0.8\textheight]{flow-temp-out.pdf}
+\end{frame}
+
+% ------------------------------------------------------
 \begin{frame}{Next candidates for (\texttt{zio}) integration}
 
-CERN-developed drivers for
+And for mainstream integration as well...
+\pause
+CERN-developed drivers for good old beasts
 \begin{itemize}
 \pause
 \item Struck SIS33xx ADCs
@@ -224,27 +279,26 @@ CERN-developed drivers for
 \section{Conclusions and The Ultimate Goal}
 
 % ------------------------------------------------------
-\begin{frame}{Why did we do it?}
+\begin{frame}{Let's summarize}
 
-It gave us much more than we thought in the first place
 \begin{itemize}
 \pause
-\item Smoother maintenance in the (frequent) case of\\
-	kernel API changes.
-\item Widespread distribution of the code base.
-\item Contributing back to the the FOSS community.
-\pause \color{red}
-\item Very strict process of peer review of the code by knowledgeable
-    and specialised maintainers.
+\item Accelerator control systems require managing a complex and
+    diverse zoo of hardware devices
 \pause
-\item Input (consulting!) from the topmost experts in the field.
+\item Open Hardware makes for a much more manageable design and 
+    production way
 \pause
-\item Avoidance of suboptimal, \emph{ad hoc} solutions in favour of the
-    best ones from the technical point of view.
+\item It is proven to work in practice
 \pause
-\item Use of best practice and bleeding-edge tools selected by
-    experienced programmers, \emph{e.g.} \texttt{git}, \texttt{sparse}
-    and \texttt{coccinelle}.
+\item Both for a big project like White Rabbit and for the myriad
+    of heterogeneous devices linked to it
+\pause
+\item The software side cannot simply live without the Open Software
+    model
+\pause
+\item Especially the Linux kernel! Thanks for the device model and
+    the I/O frameworks
 \end{itemize}
 \end{frame}
 

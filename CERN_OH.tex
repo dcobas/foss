@@ -450,10 +450,6 @@ Gonz\'alez Cobas}
 
 \begin{frame}{Why we use Open Hardware}
 
-	\begin{block}{Get a design just the way we want it}
-We specify fully the design.
-	\end{block}	
-
 	\begin{block}{Peer review}
 	 Get your design reviewed by experts all around the world, including companies!
 	\end{block}
@@ -464,6 +460,9 @@ We specify fully the design.
 	\end{block}
 	\begin{block}{Healthier relationship with companies}
           No vendor-locked situations. Companies selected solely on the basis of technical excellence, good support and price.
+	\end{block}
+	\begin{block}{Dissemination of knowledge}
+          One of the core missions of CERN.
 	\end{block}
 \end{frame}
 
@@ -486,7 +485,7 @@ We specify fully the design.
 \end{itemize}
 	\end{block}
 
-	\begin{block}{Server made itself of open software}
+	\begin{block}{Server made itself of FOSS}
    \begin{itemize}
 	  \item ChiliProject (a fork of Redmine)
 	  \item SVN/GIT for version management, integrated in OHR
@@ -496,13 +495,13 @@ We specify fully the design.
 
 
 
-\begin{frame}{Example of an OHR project}
- \begin{center}
-   \includegraphics[height=6cm]{ohr_spec_top.jpg}
-% \includegraphics[height=6cm]{../pictures/ohwr/EDA-02063-V1-0-TOP1.jpg}% ADC card
-%  \includegraphics[height=6cm]{../pictures//BoardBlockDiagramv2.pdf}%
- \end{center} 
-\end{frame}
+% \begin{frame}{Example of an OHR project}
+%  \begin{center}
+%    \includegraphics[height=6cm]{ohr_spec_top.jpg}
+% % \includegraphics[height=6cm]{../pictures/ohwr/EDA-02063-V1-0-TOP1.jpg}% ADC card
+% %  \includegraphics[height=6cm]{../pictures//BoardBlockDiagramv2.pdf}%
+%  \end{center} 
+% \end{frame}
 
 % \iffalse
 % \begin{frame}{OHR Status}{October 2011}
@@ -546,7 +545,16 @@ We specify fully the design.
 		\item Digital I/O: 5 channels, 16 channels
 	\end{itemize}
 \end{block}
+Important: all of these are or will be \textbf{commercially} available.
+
 \end{frame}
+
+\begin{frame}{The best of both worlds}
+  \begin{center}
+   \includegraphics[width=\textwidth]{commercial_and_open.pdf}%
+  \end{center}
+\end{frame}
+
 
 % \begin{frame}{ CERN non-FMC projects in OHR -- some examples}
 % \begin{block}{Hardware}
@@ -592,7 +600,7 @@ We specify fully the design.
 	\begin{block}{Provides a solid legal basis}
    \begin{itemize}
 	\item Developed with Knowledge Transfer Group at CERN 
-	\item Inspired by open software licences
+	\item Inspired by FOSS licences
 	\item Focused on both design and products
 	\item Persistent as LGPL
    \end{itemize}
@@ -608,7 +616,7 @@ We specify fully the design.
 \end{frame}
 
 \begin{frame}{CERN Open Hardware License \href{http://ohwr.org/cernohl}{-- ohwr.org/cernohl}}
-	\begin{block}{Same principles as Open Software}
+	\begin{block}{Same principles as FOSS}
  \begin{itemize}
 	 \item Anyone can see the source (design documentation)
 	\item Anyone is free to study, modify and share
@@ -812,7 +820,7 @@ Worm farm and rotocaster
 % advantage - easy  and precise implementation of time sync
   \item \textbf{Synchronous mode} (Sync-E) - common clock for physical layer in entire network, allowing for precise time and frequency transfer.
 
-\item \textbf{Deterministic routing} latency - a guarantee that packet transmission delay between two stations will never exceed a certain boundary.
+\item \textbf{Deterministic routing} latency - a guarantee that frame transmission delay between two stations will never exceed a certain boundary.
 \end{itemize}
 \end{block}
 
@@ -875,7 +883,7 @@ Up to 2000 nodes.
 \includegraphics[width=6.5cm]{sw_block.pdf}
 \end{center}
 \begin{itemize}
-\item System FPGA handles all packet processing.
+\item System FPGA handles all frame processing.
 \item Implements PTP stack and management functions (SNMP, Spanning Tree) 
    inside a Linux embedded platform.
 \end{itemize}

@@ -5,9 +5,10 @@
 
 \documentclass[compress,red]{beamer}
 \mode<presentation>
+\usetheme{Madrid}
+\useoutertheme{infolines}
 \setbeamertemplate{navigation symbols}{}
 
-\usetheme{Warsaw}
 % other themes: AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen,
 % Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Maloe, Marburg, Montpellier, PaloAlto, Pittsburg, Rochester, Singapore, Szeged, classic
 
@@ -47,16 +48,15 @@
 % \usepackage{beamerouterthemesmoothbars}
 % outer themes include default, infolines, miniframes, shadow, sidebar, smoothbars, smoothtree, split, tree
 
-\useoutertheme[subsection=false]{smoothbars}
 
 % to have the same footer on all slides
 %\setbeamertemplate{footline}[text line]{STUFF HERE!}
-\setbeamertemplate{footline}[text line]{} % makes the footer EMPTY
 
 %To generate note pages after each slide
 %\setbeameroption{show notes}
 
 % include packages
+\usepackage{helvet}
 \usepackage{subfigure}
 \usepackage{multicol}
 \usepackage{amsmath}
@@ -67,7 +67,6 @@
 \usepackage{url}
 \usepackage{multimedia}
 \usepackage{hyperref}
-\usepackage{helvet}
      
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title Page Info %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,18 +80,17 @@
 % Software incl WB and ZIO 15'
 
 
-\title{A strategy for managing diverse equipment in the CERN controls group}
+\title[Diverse equipment at CERN]{A strategy for managing diverse equipment in the CERN controls group}
 %\subtitle{Update on specifications}
 \author[Javier Serrano, David Cobas et al.]{Javier Serrano, Juan David
 Gonz\'alez Cobas}
-%\institute{CERN\\Geneva, Switzerland}
+\institute[HT]{}
 \date{FOSDEM 2012}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Begin Your Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\useoutertheme{smoothbars}
-\setbeamertemplate{footline}[page number]
 
 \begin{document}
 
@@ -104,18 +102,22 @@ Gonz\'alez Cobas}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\AtBeginSubsection[] % Do nothing for \section*
-{
-\begin{frame}<beamer>
-\frametitle{Outline}
-\tableofcontents[currentsection, currentsubsection]
-\end{frame}
-}
+% \AtBeginSubsection[] % Do nothing for \section*
+% {
+% \begin{frame}<beamer>
+% \frametitle{Outline}
+% \tableofcontents[currentsection, currentsubsection]
+% \end{frame}
+% }
 
 %\section[Outline]{}	% this puts the outline before EACH section automatically & will highlight the section you're about to talk about
 
 
-\frame{\tableofcontents}
+\frame{\frametitle{Outline}
+\begin{footnotesize}
+\tableofcontents
+
+\end{footnotesize}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Intro to CERN}

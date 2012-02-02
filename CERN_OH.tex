@@ -415,11 +415,11 @@ Gonz\'alez Cobas}
 		\end{itemize}
 	\item We developed a design infrastructure
 		\begin{itemize}
-		\item scripts to automatically generate Wishbone slave
+		\item \textcolor{red}{WBGen}: scripts to automatically generate Wishbone slave
                   HDL and documentation
-		\item IP blocks with descriptors to enable software re-use
-		\item support to synthesize and simulate designs with distributed sources
-		\item library of Wishbone cores
+		\item \textcolor{red}{SDWB}: IP blocks with descriptors to enable software re-use
+		\item \textcolor{red}{HDLMake}: support to synthesize and simulate designs with distributed sources
+		\item \textcolor{red}{Etherbone}: a bridge between Ethernet and Wishbone
 		\end{itemize}
  \end{itemize}
 \end{frame}
@@ -973,6 +973,8 @@ Up to 2000 nodes.
 %%% \end{frame}
 
 % ------------------------------------------------------
+\section{Software for Diverse Equipment}
+
 \begin{frame}
 \frametitle{Software for Diverse Equipment}
 
@@ -1017,6 +1019,7 @@ We got ourselves a rather diverse hardware ecosyst...
 
 \end{frame}
 
+\subsection{FMC boards}
 % ------------------------------------------------------
 \begin{frame}{The FMC family of boards}
 \begin{itemize}
@@ -1114,10 +1117,9 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \end{itemize}
 \end{frame}
 
-\section{FMC boards}
 
 
-\section{The \texttt{zio} framework}
+\subsection{The \texttt{zio} framework}
 
 % ------------------------------------------------------
 \begin{frame}{Industrial I/O frameworks}
@@ -1131,10 +1133,10 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \end{block}
 
 \pause
-\begin{block}{Drawbacks}
+\begin{block}{Drawbacks (for CERN applications)}
 \begin{itemize}
-\item do not suit our needs
-\item interfaces are cumbersome
+\item interfaces are cumbersome (Comedi)
+\item our use cases are far more complicated
 \end{itemize}
 \end{block}
 
@@ -1150,8 +1152,6 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 \end{frame}
 
 % ------------------------------------------------------
-
-% ------------------------------------------------------
 \begin{frame}
 \frametitle{\texttt{zio} features}
 
@@ -1160,14 +1160,14 @@ aspects:
 \begin{itemize}
 \item Digital and analog input and output.
 \item One-shot and streaming (buffered) data acquisition or waveform play.
+\item Buffer management and timing for streaming conversion.
 \item Resolution.
 \item Sampling rate.
-\item Buffer management and timing for streaming conversion.
-\item Support for DMA.
+\item Timestamping.
 \item Calibration, offset and gain.
 \item Bit grouping in digital I/O.
-\item Timestamping.
 \item Triggering of acquisition/output.
+\item Support for DMA.
 \item Potential to integrate in the main tree.
 \end{itemize}
 
@@ -1178,14 +1178,14 @@ aspects:
 \frametitle{\texttt{zio} concepts}
 
 \begin{block}{\texttt{zio} abstractions}
-\begin{itemize}
+\begin{description}
 \item[devices] victims of our device drivers, contain channels
 \item[channels] basic I/O units
 \item[channel sets] group channels to be triggered (acquire, output)
 	simultaneously
 \item[buffers] for input and output buffering, of course
 \item[triggers] cause acquisitions to occur
-\end{itemize}
+\end{description}
 \end{block}
 
 \end{frame}
@@ -1220,7 +1220,7 @@ CERN-developed drivers for good old beasts
 \end{itemize}
 \end{frame}
 
-\section{Conclusions and The Ultimate Goal}
+\section{Conclusions}
 
 % ------------------------------------------------------
 \begin{frame}{Let's summarize}
@@ -1245,6 +1245,132 @@ CERN-developed drivers for good old beasts
     the I/O frameworks
 \end{itemize}
 \end{frame}
+
+\section{Extras}
+
+\subsection {Timing requirements and technologies}
+
+\frame{\frametitle{Two-way delay compensation schemes}
+\begin{columns}[c]
+\column{1.5in}
+\begin{center}
+\includegraphics[height=5cm]{ptp_exchange.pdf}
+\end{center}
+\column{2.5in}
+Having the values of $t_{1}$, $t_{2}$, $t_{3}$ and $t_{4}$, the slave can calculate the one-way link delay:\\
+\begin{center} 
+$\delta_{ms} = \frac{(t_{4}-t_{1}) - (t_{3}-t_{2})}{2}$
+\end{center}
+\end{columns}
+}
+
+\subsubsection{Millisecond timing}
+
+\frame{
+\frametitle{Millisecond timing clients}
+%\framesubtitle {Hadron therapy}
+\begin{center}
+\includegraphics[width=.95\textwidth, height=0.8\textheight, keepaspectratio]{computer_center.jpg}
+\end{center}
+}
+
+\frame{\frametitle{Millisecond timing}
+\framesubtitle{Example: Network Time Protocol (NTP)}
+\begin{block}{Used in general-purpose computers}
+\begin{itemize}
+  \item Works across the Internet. 
+  \item Each client (slave) gets synchronized to one or more servers.
+\end{itemize}
+\end{block}
+\begin{block}{Cannot do better than 1 ms}
+\begin{itemize}
+  \item Asymmetries in network, switches and routers. 
+  \item Non-determinism due to OS scheduler (time tags done in SW).
+  \item Requires strong statistics artillery to average over many measurements.
+\end{itemize}
+\end{block}
+}
+
+\subsubsection{Microsecond timing}
+
+\frame{
+\frametitle{Microsecond timing clients}
+%\framesubtitle {Hadron therapy}
+\begin{center}
+\includegraphics[width=.95\textwidth, height=0.8\textheight, keepaspectratio]{lhc_incident1.jpg}
+\end{center}
+}
+
+
+\frame{
+\frametitle{Microsecond timing clients}
+%\framesubtitle {Hadron therapy}
+\begin{center}
+\includegraphics[width=.95\textwidth, height=0.8\textheight, keepaspectratio]{lhc_incident2.jpg}
+\end{center}
+}
+
+\frame{\frametitle{Microsecond timing}
+\framesubtitle{Example: Precision Time Protocol (PTP, IEEE1588)}
+\begin{block}{Acts on both of NTP's shortcomings}
+\begin{itemize}
+  \item Time-tagging can be done in HW.
+  \item Special PTP switches ensure no loss in precision.
+\end{itemize}
+\end{block}
+\begin{block}{Has a hard time doing better than $1 \mu s$}
+\begin{itemize}
+  \item Typical nodes use a free-running oscillator.
+  \item Frequency offset (and drift) compensation generates extra traffic.
+\end{itemize}
+\end{block}
+}
+
+\subsubsection{Nanosecond and picosecond timing}
+
+\frame{
+\frametitle{Nanosecond and picosecond timing clients}
+%\framesubtitle {Hadron therapy}
+\begin{center}
+\includegraphics[width=.95\textwidth, height=0.8\textheight, keepaspectratio]{cavity_control.pdf}
+\end{center}
+}
+
+\frame{
+\frametitle{Nanosecond and picosecond timing}
+\framesubtitle {Example: White Rabbit}
+\begin{center}
+\includegraphics[height=6cm]{synce.png}
+\end{center}
+}
+
+\frame{
+\frametitle{Nanosecond and picosecond timing}
+\framesubtitle {Phase tracking}
+
+\begin{center}
+\includegraphics[height=2.5cm]{phase_tracking.pdf}
+\end{center}
+
+\begin{itemize}
+\item
+  Monitor phase of bounced-back clock continuously.
+\item
+  Phase-locked loop in the slave follows the phase changes measured by the master.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Nanosecond and picosecond timing}
+\framesubtitle {Another example: neutrino oscillation experiments}
+\includegraphics[width=\textwidth]{cern_to_lngs.jpg}
+}
+
+\frame{
+\frametitle{Nanosecond and picosecond timing}
+\framesubtitle {Another example: neutrino oscillation experiments}
+\includegraphics[width=\textwidth]{cern_gransasso.pdf}
+}
 
 %%% \end{document}
 \end{document}

@@ -40,7 +40,7 @@ $(TALK): $(CODE).tex $(TALKFIGS)
 	pdflatex $* && pdflatex $*
 
 clean:
-	rm -rf *.aux *.dvi *.log *.bak *.eps *.nav *.out *.snm *.toc
+	rm -rf *.aux *.dvi *.log *.bak *.eps *.nav *.out *.snm *.toc $(TALKFIGS)
 zip:
 	zip $(CODE)_`date +%Y%m%d%H%M%S`.zip $(ARCHIVE)
 view:

@@ -3,7 +3,7 @@
 CODE=CERN_OH
 STYLES=JAC2003.cls
 PAPERFIGS= $(CODE)f1.eps $(CODE)f2.eps
-TALKFIGS= driverarch.pdf adcarch.pdf spec.pdf fmcadc.pdf
+TALKFIGS= adcarch.pdf spec.pdf fmcadc.pdf
 FIGS= $(CODE)f1.fig $(CODE)f2.fig $(CODE)f2_talk.fig block_diagram.dia \
 	driverarch.fig adcarch.fig spec.fig fmcadc.fig
 RASTERS=p_tundra_Tsi148-HR.gif 01a020-_hi.jpg fmcadc.jpg spec.jpg

@@ -1072,24 +1072,32 @@ kernel
 
 % ------------------------------------------------------
 \begin{frame}{Architecture of the FMC drivers}
-\includegraphics[height=0.8\textheight]{driverarch.pdf}
-\end{frame}
-
-% ------------------------------------------------------
-\begin{frame}{How the FMC drivers start up}
+\begin{columns}[c]
+\column{0.55\textwidth}
+\only<1>{\includegraphics[width=0.95\textwidth]{driverarch09.pdf}}
+\only<2>{\includegraphics[width=0.95\textwidth]{driverarch08.pdf}}
+\only<3>{\includegraphics[width=0.95\textwidth]{driverarch07.pdf}}
+\only<4>{\includegraphics[width=0.95\textwidth]{driverarch06.pdf}}
+\only<5>{\includegraphics[width=0.95\textwidth]{driverarch05.pdf}}
+\only<6>{\includegraphics[width=0.95\textwidth]{driverarch04.pdf}}
+\only<7>{\includegraphics[width=0.95\textwidth]{driverarch03.pdf}}
+\only<8>{\includegraphics[width=0.95\textwidth]{driverarch02.pdf}}
+\only<9>{\includegraphics[width=0.95\textwidth]{driverarch01.pdf}}
+\only<10>{\includegraphics[width=0.95\textwidth]{driverarch.pdf}}
+\column{0.4\textwidth}
+\footnotesize
 \begin{itemize}
-\item Identify the carrier board and initialize it.
-\item Perform a basic identification of the mezzanine(s) installed in
+\pause\item Identify the carrier board and initialize it.
+\pause\item Perform a basic identification of the mezzanine(s) installed in
     the FMC slot(s), and their configured applications.
-\item Load the application firmware into the carrier FPGA.
-\item Register a Wishbone bus with the kernel.
-\item Enumerate the cores in that firmware.
-\item Register the devices those cores implement and install the drivers
+\pause\item Load the application firmware into the carrier FPGA.
+\pause\item Register a Wishbone bus with the kernel.
+\pause\item Enumerate the cores in that firmware.
+\pause\item Register the devices those cores implement and install the drivers
     associated to them.
 \end{itemize}
+\end{columns}
 \end{frame}
-
-
 
 \subsection{The \texttt{zio} framework}
 

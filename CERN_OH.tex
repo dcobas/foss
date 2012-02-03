@@ -949,28 +949,31 @@ We got ourselves a rather diverse hardware ecosyst...
 \pause\item analog I/O (ADCs, DACs, waveform generators)
 \pause\item digital I/O
 \pause\item timing boards (FD, TDC)
+\pause\item many others
 \end{itemize}
 \end{block}
 \pause
 \begin{block}{...of diverse breed}
 \begin{itemize}
-\pause\item legacy stuff
-\pause\item FMC boards
+\pause\item shiny brand new FMC boards
+\pause\item legacy COTS and in-house stuff
 \end{itemize}
 \end{block}
 
-\pause Some order has to be imposed in the zoo.
+\pause \textcolor{red}{\bf Some order has to be imposed in the zoo.}
 \end{frame}
 
 % ------------------------------------------------------
 \begin{frame}
 \frametitle{Unifying Themes}
+\pause
 \begin{block}{Wishbone-based drivers}
 \begin{itemize}
 \item covering the FMC family of boards
 \item designed around the internal Wishbone bus
-\item depending on enumeration of device cores
+\item introducing enumeration of device cores
 \end{itemize}
+\pause
 \end{block}
 \begin{block}{\texttt{zio}: The Ultimate I/O}
 \begin{itemize}
@@ -999,7 +1002,7 @@ We got ourselves a rather diverse hardware ecosyst...
 % ------------------------------------------------------
 \begin{frame}{A typical data acquisition application: carrier}
 \begin{center}
-\includegraphics[height=0.6\textheight]{spec.pdf}
+\includegraphics[height=0.7\textheight]{spec.pdf}
 \end{center}
 \centering
 SPEC carrier board (\url{http://www.ohwr.org/projects/spec})
@@ -1008,37 +1011,38 @@ SPEC carrier board (\url{http://www.ohwr.org/projects/spec})
 % ------------------------------------------------------
 \begin{frame}{A typical data acquisition application: mezzanine}
 \begin{center}
-\includegraphics[rotate=180,height=0.7\textheight]{fmcadc.pdf}
+\includegraphics[rotate=180,height=0.65\textheight]{fmcadc.pdf}
 \end{center}
 \centering
-FMA 100M4ch14b ADC
+FMC 100M4ch14b ADC
 (\url{http://www.ohwr.org/projects/fmc-adc-100m14b4cha})
 \end{frame}
 
 % ------------------------------------------------------
-\begin{frame}
-\begin{figure}[t]
-   \centering
-   \includegraphics[width=80mm]{adcarch.pdf}
-   \caption{Block diagram of the FMC slow ADC application.}
-   \label{slow-adc}
-\end{figure}
-\end{frame}
-
-% ------------------------------------------------------
 \begin{frame}{Parts of the whole}
+\begin{columns}[c]
+\column{0.55\textwidth}
+   \centering
+   \includegraphics[width=60mm]{adcarch.pdf}\\
+   \vspace{1pc}
+   {\footnotesize
+       Block diagram of the FMC ADC application.}
+\column{0.40\textwidth}
+\footnotesize
 \begin{itemize}
-\item Basic I${}^2$C interfacing to the mezzanine board.
-\item Wishbone mastering.
-\item DMA access to DDR3 memory in the carrier board.
-\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
-\item Interrupt control.
+\pause\item Basic I${}^2$C interfacing to the mezzanine board.
+\pause\item Wishbone mastering.
+\pause\item DMA access to DDR3 memory in the carrier board.
+\pause\item Mezzanine-specific control logic (\emph{e.g.} ADC programming/setup).
+\pause\item Interrupt control.
 \end{itemize}
+\end{columns}
 \end{frame}
 
 % ------------------------------------------------------
 \begin{frame}{Drivers for the FMC family}
-The main concepts for the design of these drivers are
+
+\begin{block}{Design concepts}
 \begin{itemize}
 \pause
 \item modular structure that reflects the core structure of the firmware
@@ -1047,16 +1051,22 @@ The main concepts for the design of these drivers are
 \pause
 \item ability to dynamically load bitstreams by application
 \end{itemize}
+\end{block}
 
 \pause
+\begin{block}{Nothing new under the FOSS sun}
+\begin{itemize}
+\pause\item
 On the whole, the driver for the carrier board acts as a basic firmware
 loader and a bridge driver (with device enumeration
 \emph{\`a la PCI)} between the host bus (PCIe, VME) and the FPGA
 interconnection bus
-
-\pause
+\pause\item
 It will be (we hope) the first Wishbone bus driver in the mainstream
-kernel $\Rightarrow$ will to go upstream, timeliness
+kernel
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 
@@ -1120,17 +1130,15 @@ kernel $\Rightarrow$ will to go upstream, timeliness
 The \texttt{zio} framework is designed to flexibly support the following
 aspects:
 \begin{itemize}
-\item Digital and analog input and output.
-\item One-shot and streaming (buffered) data acquisition or waveform play.
-\item Buffer management and timing for streaming conversion.
-\item Resolution.
-\item Sampling rate.
-\item Timestamping.
-\item Calibration, offset and gain.
-\item Bit grouping in digital I/O.
-\item Triggering of acquisition/output.
-\item Support for DMA.
-\item Potential to integrate in the main tree.
+\pause\item Digital and analog input and output.
+\pause\item One-shot and streaming (buffered) data acquisition or waveform play.
+\pause\item Buffer management and timing for streaming conversion.
+\pause\item Resolution, \pause sampling rate, \pause timestamping.
+\pause\item Calibration, \pause offset \pause and gain.
+\pause\item Bit grouping in digital I/O.
+\pause\item Triggering of acquisition/output.
+\pause\item Support for DMA.
+\pause\item \emph{Potential to integrate in the main tree.}
 \end{itemize}
 
 \end{frame}
@@ -1141,12 +1149,12 @@ aspects:
 
 \begin{block}{\texttt{zio} abstractions}
 \begin{description}
-\item[devices] victims of our device drivers, contain channels
-\item[channels] basic I/O units
-\item[channel sets] group channels to be triggered (acquire, output)
+\pause\item[devices] victims of our device drivers, contain channels
+\pause\item[channels] basic I/O units
+\pause\item[channel sets] group channels to be triggered (acquire, output)
 	simultaneously
-\item[buffers] for input and output buffering, of course
-\item[triggers] cause acquisitions to occur
+\pause\item[buffers] for input and output buffering, of course
+\pause\item[triggers] cause acquisitions to occur
 \end{description}
 \end{block}
 
@@ -1156,18 +1164,25 @@ aspects:
 \begin{frame}{Next candidates for (\texttt{zio}) integration}
 
 And for mainstream integration as well...
+
 \pause
-CERN-developed drivers for good old beasts
+\begin{block}{CERN-developed OHWR FMC boards}
 \begin{itemize}
-\pause
-\item Struck SIS33xx ADCs
-\pause
-\item Tews TPCI200/TVME200 carries plus IPOCTAL serial boards
-\pause
-\item all the CERN BE/CO-supported FMC boards in the Open Hardware Repository
-\pause
-\item timing receivers, White Rabbit, etc.
+    \pause\item FD (2012 Q1)
+    \pause\item 100Msps ADC (2012 Q2)
+    \pause\item TDC (2012 Q2)
+    \pause\item \ldots and so forth.
 \end{itemize}
+\end{block}
+
+\pause
+\begin{block}{CERN-developed drivers for good old beasts}
+\begin{itemize}
+\pause \item Struck SIS33xx ADCs
+\pause \item Tews TPCI200/TVME200 carries plus IPOCTAL serial boards
+\pause \item timing receivers, White Rabbit, etc.
+\end{itemize}
+\end{block}
 \end{frame}
 
 \section{Conclusions}
@@ -1176,22 +1191,16 @@ CERN-developed drivers for good old beasts
 \begin{frame}{Let's summarize}
 
 \begin{itemize}
-\pause
-\item Accelerator control systems require managing a complex and
+\pause \item Accelerator control systems require managing a complex and
     diverse zoo of hardware devices
-\pause
-\item Open Hardware makes for a much more manageable design and 
+\pause \item Open Hardware makes for a much more manageable design and 
     production way
-\pause
-\item It is proven to work in practice
-\pause
-\item Both for a big project like White Rabbit and for the myriad
+\pause \item It is proven to work in practice
+\pause \item Both for a big project like White Rabbit and for the myriad
     of heterogeneous devices linked to it
-\pause
-\item The software side cannot simply live without the Open Software
+\pause \item The software side cannot simply live without the Open Software
     model
-\pause
-\item Especially the Linux kernel! Thanks for the device model and
+\pause \item Especially the Linux kernel! Thanks for the device model and
     the I/O frameworks
 \end{itemize}
 \end{frame}

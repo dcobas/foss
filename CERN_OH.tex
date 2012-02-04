@@ -13,7 +13,6 @@
 % inner themes include circles, default, inmargin, rectangles, rounded
 
 \usepackage{helvet}
-\usepackage{subfigure}
 \usepackage{multicol}
 \usepackage{amsmath}
 \usepackage{epsfig}
@@ -209,6 +208,13 @@ Gonz\'alez Cobas}
 \end{center}
 }
 
+\frame{
+\frametitle{CERN Accelerator Complex}
+\begin{center}
+\includegraphics[width=.95\textwidth, height=0.8\textheight, keepaspectratio]{0812015.jpg}
+\end{center}
+}
+
 % % --- remove
 % \frame{
 % \frametitle{Free Electron Laser}
@@ -375,7 +381,7 @@ Gonz\'alez Cobas}
                   HDL and documentation
 		\item \textcolor{red}{SDWB}: IP blocks with descriptors to enable software re-use
 		\item \textcolor{red}{HDLMake}: support to synthesize and simulate designs with distributed sources
-		\item \textcolor{red}{Etherbone}: a bridge between Ethernet and Wishbone
+		\item \textcolor{red}{Etherbone}: a bridge between Ethernet and Wishbone (made by GSI)
 		\end{itemize}
  \end{itemize}
 \end{frame}
@@ -769,8 +775,7 @@ Worm farm and rotocaster
   \frametitle{What is White Rabbit?}
 
 % Extracting the clock from Ethernet carrier
-\begin{block}{}
-  An \textbf{extension} to \textbf{Ethernet} which provides:
+\begin{block}{An \textbf{extension} to \textbf{Ethernet} which provides:}
   \begin{itemize}
 % sync mode: - async & sync comparison, tree structure, common clock coming from single source, CDR
 % advantage - easy  and precise implementation of time sync
@@ -780,6 +785,12 @@ Worm farm and rotocaster
 \end{itemize}
 \end{block}
 
+\begin{block}{A multi-lab, multi-company project}
+\begin{itemize}
+\item based on Open Hardware and FOSS
+\item with expanding user base
+\end{itemize}
+\end{block}
 }
 
 \begin{frame}{Design goals}
@@ -836,7 +847,8 @@ Up to 2000 nodes.
 
 \begin{frame}{Switch block diagram - main part}
 \begin{center}
-\includegraphics[width=6.5cm]{sw_block.pdf}
+%\includegraphics[width=6.5cm]{firmware_arch.pdf}
+   \includegraphics[width=60mm]{sw_block.pdf}\\
 \end{center}
 \begin{itemize}
 \item System FPGA handles all frame processing.
@@ -1012,7 +1024,7 @@ SPEC carrier board (\url{http://www.ohwr.org/projects/spec})
 % ------------------------------------------------------
 \begin{frame}{A typical data acquisition application: mezzanine}
 \begin{center}
-\includegraphics[rotate=180,height=0.65\textheight]{fmcadc.pdf}
+\includegraphics[rotate=180,height=0.65\textheight]{adc.jpg}
 \end{center}
 \centering
 FMC 100M4ch14b ADC
@@ -1024,7 +1036,8 @@ FMC 100M4ch14b ADC
 \begin{columns}[c]
 \column{0.55\textwidth}
    \centering
-   \includegraphics[width=60mm]{adcarch.pdf}\\
+   %\includegraphics[width=60mm]{sw_block.pdf}\\
+\includegraphics[width=0.9\textwidth]{firmware_arch.pdf}
    \vspace{1pc}
    {\footnotesize
        Block diagram of the FMC ADC application.}
@@ -1075,26 +1088,31 @@ kernel
 \begin{frame}{Architecture of the FMC drivers}
 \begin{columns}[c]
 \column{0.55\textwidth}
-\only<1>{\includegraphics[width=0.95\textwidth]{driverarch09.pdf}}
-\only<2>{\includegraphics[width=0.95\textwidth]{driverarch08.pdf}}
-\only<3>{\includegraphics[width=0.95\textwidth]{driverarch07.pdf}}
-\only<4>{\includegraphics[width=0.95\textwidth]{driverarch06.pdf}}
-\only<5>{\includegraphics[width=0.95\textwidth]{driverarch05.pdf}}
-\only<6>{\includegraphics[width=0.95\textwidth]{driverarch04.pdf}}
-\only<7>{\includegraphics[width=0.95\textwidth]{driverarch03.pdf}}
-\only<8>{\includegraphics[width=0.95\textwidth]{driverarch02.pdf}}
-\only<9>{\includegraphics[width=0.95\textwidth]{driverarch01.pdf}}
-\only<10>{\includegraphics[width=0.95\textwidth]{driverarch.pdf}}
+ \only<1>{\includegraphics[width=0.95\textwidth]{da15.pdf}}
+ \only<2>{\includegraphics[width=0.95\textwidth]{da14.pdf}}
+ \only<3>{\includegraphics[width=0.95\textwidth]{da13.pdf}}
+ \only<4>{\includegraphics[width=0.95\textwidth]{da12.pdf}}
+ \only<5>{\includegraphics[width=0.95\textwidth]{da11.pdf}}
+ \only<6>{\includegraphics[width=0.95\textwidth]{da10.pdf}}
+ \only<7>{\includegraphics[width=0.95\textwidth]{da09.pdf}}
+ \only<8>{\includegraphics[width=0.95\textwidth]{da08.pdf}}
+ \only<9>{\includegraphics[width=0.95\textwidth]{da07.pdf}}
+\only<10>{\includegraphics[width=0.95\textwidth]{da06.pdf}}
+\only<11>{\includegraphics[width=0.95\textwidth]{da05.pdf}}
+\only<12>{\includegraphics[width=0.95\textwidth]{da04.pdf}}
+\only<13>{\includegraphics[width=0.95\textwidth]{da03.pdf}}
+\only<14>{\includegraphics[width=0.95\textwidth]{da02.pdf}}
+\only<15>{\includegraphics[width=0.95\textwidth]{da01.pdf}}
 \column{0.4\textwidth}
 \footnotesize
 \begin{itemize}
-\pause\item Identify the carrier board and initialize it.
-\pause\item Perform a basic identification of the mezzanine(s) installed in
+\item<4-> Identify the carrier board and initialize it.
+\item<5-> Perform a basic identification of the mezzanine(s) installed in
     the FMC slot(s), and their configured applications.
-\pause\item Load the application firmware into the carrier FPGA.
-\pause\item Register a Wishbone bus with the kernel.
-\pause\item Enumerate the cores in that firmware.
-\pause\item Register the devices those cores implement and install the drivers
+\item<8-> Load the application firmware into the carrier FPGA.
+\item<9-> Register a Wishbone bus with the kernel.
+\item<11-> Enumerate the cores in that firmware.
+\item<12-> Register the devices those cores implement and install the drivers
     associated to them.
 \end{itemize}
 \end{columns}
